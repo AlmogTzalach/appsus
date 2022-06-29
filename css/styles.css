@@ -1,7 +1,14 @@
+/* Setup */
+@import url(./setup/typography.css);
+@import url(./setup/vars.css);
+
+/* Basics */
+@import url(./basics/base.css);
+@import url(./basics/layout.css);
+@import url(./basics/helpers.css);
+
 /* Mail app */
+@import url(./apps/mail/mail-app.css);
 
-@import url('./apps/mail/mail-app.css');
-
- /* Keep app */
-
- @import url('./apps/keep/keep-app.css');
+/* Keep app */
+@import url(./apps/keep/keep-app.css);
