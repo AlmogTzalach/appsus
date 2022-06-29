@@ -1,4 +1,8 @@
-/* components */
+/* layout */
+@import url(./mail-layout.css);
 
-@import url(./cmps/mail-preview.css);
+/* components */
 @import url(./cmps/mail-list.css);
+@import url(./cmps/mail-side-nav.css);
+@import url(./cmps/mail-preview.css);
+@import url(./cmps/mail-details.css);

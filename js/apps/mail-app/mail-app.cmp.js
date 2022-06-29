@@ -1,9 +1,11 @@
-import mailList from './cmps/mail-list.js'
 import { mailService } from './services/mail.service.js'
+import mailList from './cmps/mail-list.js'
+import mailSideNav from './cmps/mail-side-nav.cmp.js'
 
 export default {
 	template: `
-        <section>
+        <section class="mail-container grid">
+            <mail-side-nav />
             <mail-list :mails="mails" />
         </section>
     `,
@@ -23,5 +25,6 @@ export default {
 
 	components: {
 		mailList,
+		mailSideNav,
 	},
 }

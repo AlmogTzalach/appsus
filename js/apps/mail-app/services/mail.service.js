@@ -52,6 +52,9 @@ function _createMails() {
 		mails.push(_createMail('Hi!', 'Hello', 'nir@yahoo.com', 'anton@gmail.com'))
 		mails.push(_createMail('Hi!', 'Hello', 'yarden@yahoo.com', 'anton@gmail.com'))
 		mails.push(_createMail('Hi!', 'Hello', 'moshe@yahoo.com', 'anton@gmail.com'))
+
+		mails[0].isRead = true
+		mails[2].isRead = true
 		storageService.postMany(MAIL_KEY, mails)
 	}
 	return mails
