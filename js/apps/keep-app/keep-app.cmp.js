@@ -4,12 +4,7 @@ import notePreview from './cmps/note-preview.cmp.js'
 export default {
 	template: `
         <section class="notes-list-container grid">
-            <ul>
-                <li>
-                    <note-preview v-for="(note, idx) in notes" :key="note.id" :note="note"></note-preview>
-                    
-                </li>
-            </ul>
+            <note-preview v-for="(note, idx) in notes" :key="note.id" :note="note"></note-preview>
         </section>
     `,
 	data() {
