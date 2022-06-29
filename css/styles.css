@@ -1,3 +1,7 @@
-/* mail app */
+/* Mail app */
 
 @import url('./apps/mail/mail-app.css');
+
+ /* Keep app */
+
+ @import url('./apps/keep/keep-app.css');

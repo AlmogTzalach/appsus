@@ -1,4 +1,0 @@
-.notes-list-container {
-    grid-template-columns: repeat(auto-fill, minmax(50px, 300px));
-    grid-auto-rows: auto;
-}
