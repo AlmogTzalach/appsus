@@ -10,7 +10,7 @@ export default {
                 <component :is="note.type" :info="note.info"></component>
             </div>
         </section>
-`,
+    `,
 	data() {
 		return {
 			notes: null,

@@ -1,13 +1,27 @@
+import mailList from './cmps/mail-list.js'
+import { mailService } from './services/mail.service.js'
+
 export default {
 	template: `
         <section>
-            Mail app
+            <mail-list :mails="mails" />
         </section>
     `,
 
 	data() {
-		return {}
+		return {
+			mails: null,
+		}
 	},
+
 	methods: {},
 	computed: {},
+
+	created() {
+		mailService.query().then((mails) => (this.mails = mails))
+	},
+
+	components: {
+		mailList,
+	},
 }
