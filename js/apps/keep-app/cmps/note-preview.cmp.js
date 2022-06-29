@@ -1,6 +1,7 @@
 import noteTxt from './note-txt.cmp.js'
 import noteTodos from './note-todos.cmp.js'
 import noteImg from './note-img.cmp.js'
+import noteVideo from './note-video.cmp.js'
 
 export default {
 	template: `
@@ -19,7 +20,7 @@ export default {
 	data() {
 		return {}
 	},
-	components: { noteTxt, noteTodos, noteImg },
+	components: { noteTxt, noteTodos, noteImg, noteVideo },
 	methods: {
 		onRemoveNote() {
 			this.$emit('remove', this.note.id)
