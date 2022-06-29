@@ -6,10 +6,10 @@ import { router } from './router.js'
 const options = {
 	template: `
 		<section>
-			<app-header class="main-header"/>
+			<app-header />
 			<!-- <user-msg/> -->
-			<router-view class="main-content"/>
-			<app-footer class="main-footer"/>
+			<router-view />
+			<app-footer />
 		</section>
 	`,
 
