@@ -1,7 +1,8 @@
 :root {
-  --clr1: #ffffff;
-  --clr2: #58c93a;
-  --clr3: #292929;
-  --clr4: #4f4e4e;
-  --clr5: #606060;
+	--white: #ffffff;
+	--black: #202124;
+	--off-white: #f6f6f6;
+	--icon-grey: #747474;
+	--mail-red: #d93025;
+	--keep-yellow: #fbbc04;
 }
