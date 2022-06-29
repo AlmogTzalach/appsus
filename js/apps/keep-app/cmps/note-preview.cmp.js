@@ -2,6 +2,7 @@ import noteTxt from './note-txt.cmp.js'
 import noteTodos from './note-todos.cmp.js'
 import noteImg from './note-img.cmp.js'
 import noteVideo from './note-video.cmp.js'
+import colorPicker from './color-picker.cmp.js'
 
 export default {
 	template: `
@@ -9,7 +10,9 @@ export default {
                 <component :is="note.type" :info="note.info"></component>
                     <ul class="action-btns clean-list flex space-around">
                         <li class="fa-solid fa-thumbtack"></li>
-                        <li class="fa-solid fa-palette" @click="onColorNote"></li>
+                        <li class="fa-solid fa-palette" @click="openColorModal">
+							<color-picker v-if="isChooseClr" :noteId="this.note.id"></color-picker>
+						</li>
                         <li class="fa-solid fa-envelope"></li>
                         <li class="fa-solid fa-pen-to-square"></li>
                         <li class="fa-solid fa-trash-can" @click="onRemoveNote"></li>
@@ -18,16 +21,17 @@ export default {
     `,
 	props: ['note'],
 	data() {
-		return {}
+		return {
+			isChooseClr: false,
+		}
 	},
-	components: { noteTxt, noteTodos, noteImg, noteVideo },
+	components: { noteTxt, noteTodos, noteImg, noteVideo, colorPicker },
 	methods: {
+		openColorModal() {
+			return (this.isChooseClr = true)
+		},
 		onRemoveNote() {
 			this.$emit('remove', this.note.id)
-		},
-		onColorNote() {
-			const colorPick = prompt('Pick a color')
-			this.$emit('color', this.note.id, colorPick)
 		},
 	},
 	computed: {

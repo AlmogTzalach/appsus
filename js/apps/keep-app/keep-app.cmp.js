@@ -1,4 +1,5 @@
 import { keepService } from '../../services/keep-service.js'
+import { eventBus } from '../../services/eventBus-service.js'
 import notePreview from './cmps/note-preview.cmp.js'
 
 export default {
@@ -24,13 +25,18 @@ export default {
 				this.notes.splice(idx, 1)
 			})
 		},
-		changeNoteClr(id) {
+		changeNoteClr({ id, color }) {
 			const note = this.notes.find(note => note.id === id)
-			keepService.update(note).then(() => {})
+			note.bgClr = color
+			keepService.update(note).then(note => console.log(note))
 		},
 	},
 	computed: {},
 	created() {
+		this.unsubscribe = eventBus.on('color', this.changeNoteClr)
 		this.notes = keepService.query().then(notes => (this.notes = notes))
+	},
+	destroyed() {
+		this.unsubscribe()
 	},
 }
