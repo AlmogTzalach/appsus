@@ -1,3 +1,11 @@
 .mail-list {
-	margin: 1em;
+	padding: 1em;
+}
+
+.mail-list li {
+	border-top: 1px solid #e2e8ea;
+}
+
+.mail-list li:last-child {
+	border-bottom: 1px solid #e2e8ea;
 }

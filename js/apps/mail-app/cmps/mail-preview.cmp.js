@@ -1,6 +1,6 @@
 export default {
 	template: `
-        <section class="mail-preview grid">
+        <section class="mail-preview grid" :class="isRead">
             <div class=address> {{ mail.from }} </div>
             <div class="mail-txt">
                 <span class="subject"> {{ mail.subject }} </span>
@@ -26,6 +26,9 @@ export default {
 				return date.toLocaleString('default', { timeStyle: 'short' })
 			}
 			return date.toLocaleString('default', { day: 'numeric', month: 'short' })
+		},
+		isRead() {
+			return this.mail.isRead ? 'read' : 'unread'
 		},
 	},
 }
