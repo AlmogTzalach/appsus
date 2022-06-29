@@ -1,0 +1,18 @@
+.mail-preview {
+	grid-template-columns: 14em 1fr 6em;
+}
+
+.mail-preview .subject {
+	display: inline;
+	font-family: open-sans-bold;
+}
+
+.mail-preview .mail-txt {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mail-preview .date {
+	justify-self: end;
+}

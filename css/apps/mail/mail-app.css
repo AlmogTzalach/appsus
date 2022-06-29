@@ -1,3 +1,4 @@
 /* components */
 
-@import url('./cmps/mail-preview.css');
+@import url(./cmps/mail-preview.css);
+@import url(./cmps/mail-list.css);

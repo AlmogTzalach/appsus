@@ -40,8 +40,15 @@ function _createMails() {
 	let mails = utilService.loadFromStorage(MAIL_KEY)
 	if (!mails || !mails.length) {
 		mails = []
-		mails.push(_createMail('Hi!', 'Hello', 'puki@yahoo.com', 'anton@gmail.com'))
-		mails.push(_createMail('Hi!', 'Hello', 'anton@gmail.com', 'shuki@muki.com'))
+		mails.push(
+			_createMail(
+				'Hi!',
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium voluptatum numquam fuga sint exercitationem laboriosam doloremque eum debitis nam saepe? Repudiandae porro quo dolor eum aspernatur enim dolorem numquam nemo?',
+				'puki@yahoo.com',
+				'anton@gmail.com'
+			)
+		)
+		mails.push(_createMail('Hi!!!!', 'Hello lorem ipsum', 'anton@gmail.com', 'shuki@muki.com'))
 		mails.push(_createMail('Hi!', 'Hello', 'nir@yahoo.com', 'anton@gmail.com'))
 		mails.push(_createMail('Hi!', 'Hello', 'yarden@yahoo.com', 'anton@gmail.com'))
 		mails.push(_createMail('Hi!', 'Hello', 'moshe@yahoo.com', 'anton@gmail.com'))
