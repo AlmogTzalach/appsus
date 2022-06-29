@@ -1,14 +1,10 @@
 import { keepService } from '../../services/keep-service.js'
-import noteTxt from './cmps/note-txt.cmp.js'
-import noteTodos from './cmps/note-todos.cmp.js'
-import noteImg from './cmps/note-img.cmp.js'
+import notePreview from './cmps/note-preview.cmp.js'
 
 export default {
 	template: `
         <section class="notes-list-container grid">
-            <div class="note-container" v-for="(note, idx) in notes" :key="note.id">
-                <component :is="note.type" :info="note.info"></component>
-            </div>
+            <note-preview v-for="(note, idx) in notes" :key="note.id" :note="note"></note-preview>
         </section>
     `,
 	data() {
@@ -16,7 +12,7 @@ export default {
 			notes: null,
 		}
 	},
-	components: { noteTxt, noteTodos, noteImg },
+	components: { notePreview },
 	methods: {},
 	computed: {},
 	created() {
