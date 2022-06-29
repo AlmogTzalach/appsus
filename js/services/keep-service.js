@@ -10,6 +10,7 @@ export const keepService = {
 	remove,
 	get,
 	save,
+	update,
 }
 
 function query() {
@@ -23,6 +24,11 @@ function remove(noteId) {
 function get(noteId) {
 	return storageService.get(NOTES_KEY, noteId)
 }
+
+function update(note) {
+	return storageService.put(NOTES_KEY, note)
+}
+
 function save(note) {
 	return storageService.post(NOTES_KEY, note)
 }

@@ -4,9 +4,15 @@ import noteImg from './note-img.cmp.js'
 
 export default {
 	template: `
-        <section>
-                <component class="note-container" :is="note.type" :info="note.info"></component>
-                
+        <section class="note-container flex column space-between" :style="noteBgClr">
+                <component :is="note.type" :info="note.info"></component>
+                    <ul class="action-btns clean-list flex space-around">
+                        <li class="fa-solid fa-thumbtack"></li>
+                        <li class="fa-solid fa-palette" @click="onColorNote"></li>
+                        <li class="fa-solid fa-envelope"></li>
+                        <li class="fa-solid fa-pen-to-square"></li>
+                        <li class="fa-solid fa-trash-can" @click="onRemoveNote"></li>
+                    </ul>
         </section>
     `,
 	props: ['note'],
@@ -14,7 +20,19 @@ export default {
 		return {}
 	},
 	components: { noteTxt, noteTodos, noteImg },
-	methods: {},
-	computed: {},
+	methods: {
+		onRemoveNote() {
+			this.$emit('remove', this.note.id)
+		},
+		onColorNote() {
+			const colorPick = prompt('Pick a color')
+			this.$emit('color', this.note.id, colorPick)
+		},
+	},
+	computed: {
+		noteBgClr() {
+			return { backgroundColor: this.note.bgClr ? this.note.bgClr : 'white' }
+		},
+	},
 	created() {},
 }
