@@ -3,7 +3,7 @@ export default {
         <section>
             Keep App
         </section>
-`,
+    `,
 	data() {
 		return {}
 	},
