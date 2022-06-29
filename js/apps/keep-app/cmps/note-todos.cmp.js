@@ -2,7 +2,7 @@ export default {
 	template: `
           <section class="note-todos">
               <ul class="todo-list">
-                <li v-for="(todo,idx) in todos" :class="{done: todo.isDone}">{{todo.task}}</li>
+                <li v-for="(todo,idx) in todos" :class="{done: todo.isDone}" @click="toggleDone(idx)">{{todo.task}}</li>
               </ul>
           </section>
           `,
@@ -12,6 +12,10 @@ export default {
 			todos: this.info.todos,
 		}
 	},
-	methods: {},
+	methods: {
+		toggleDone(idx) {
+			this.todos[idx].isDone = !this.todos[idx].isDone
+		},
+	},
 	computed: {},
 }
