@@ -1,5 +1,5 @@
 .mail-list {
-	padding: 1em;
+	padding: 0 1em;
 }
 
 .mail-list li {
@@ -8,4 +8,13 @@
 
 .mail-list li:last-child {
 	border-bottom: 1px solid #e2e8ea;
+}
+
+.star-icon-container {
+	text-align: center;
+}
+
+.star-icon.fa-solid,
+.star-icon.fa-solid:hover {
+	color: #f2bc21;
 }

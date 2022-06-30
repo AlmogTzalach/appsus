@@ -6,29 +6,34 @@ export default {
         <section v-if="mails" class="">
             <ul class="mail-list clean-list">
                 <li v-for="mail in mails ">
-                    <mail-preview :mail="mail" @click="goToMail(mail.id)" />
+                    <mail-preview :mail="mail" @click="openMail(mail.id)" />
                 </li>
             </ul>
         </section>
     `,
 
-	// props: ['mails'],
+	props: ['mails'],
 
 	data() {
-		return {
-			mails: null,
-		}
+		return {}
 	},
 
 	methods: {
-		goToMail(id) {
-			this.$router.push('/mail/' + id)
+		openMail(id) {
+			this.$router.push(`/mail/${this.$route.params.status}/${id}`)
 		},
 	},
 	computed: {},
 
-	created() {
-		mailService.query().then((mails) => (this.mails = mails))
+	created() {},
+
+	watch: {
+		'$route.params.status': {
+			handler(status) {
+				// console.log(status)
+			},
+			immediate: true,
+		},
 	},
 
 	components: {

@@ -1,6 +1,9 @@
 export default {
 	template: `
         <section class="mail-preview grid" :class="isRead">
+			<div class="star-icon-container" @click.stop="onStar">
+				<span class="star-icon fa-star" :class="starType" ></span>
+			</div>
             <div class=address> {{ mail.from }} </div>
             <div class="mail-txt">
                 <span class="subject"> {{ mail.subject }} </span>
@@ -16,7 +19,12 @@ export default {
 	data() {
 		return {}
 	},
-	methods: {},
+	methods: {
+		onStar() {
+			this.mail.isStarred = !this.mail.isStarred
+			this.$emit('starred', this.mail.id)
+		},
+	},
 	computed: {
 		computedDate() {
 			const date = new Date(this.mail.created)
@@ -29,6 +37,9 @@ export default {
 		},
 		isRead() {
 			return this.mail.isRead ? 'read' : 'unread'
+		},
+		starType() {
+			return this.mail.isStarred ? 'fa-solid' : 'fa-regular'
 		},
 	},
 }

@@ -12,19 +12,32 @@
 	margin-bottom: 1em;
 }
 
-.side-bar div {
+.side-bar div a {
 	display: flex;
 	align-items: center;
 	padding-inline-start: 2em;
 	padding-block: 0.5em;
 	border-radius: 0 1em 1em 0;
+	transition: all 0.2s;
 }
 
-.side-bar div:hover {
+.side-bar div a:link,
+.side-bar div a:visited {
+	text-decoration: none;
+	color: var(--black);
+}
+
+.side-bar div a:hover {
 	cursor: pointer;
 	background-color: var(--off-white);
 }
 
 .side-bar div span {
 	margin-inline-end: 1em;
+}
+
+.side-bar div a.router-link-active {
+	font-family: open-sans-bold;
+	color: var(--mail-red);
+	background-color: #fce8e6;
 }

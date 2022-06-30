@@ -1,7 +1,7 @@
 .mail-preview {
 	position: relative;
-	grid-template-columns: 14em 1fr 6em;
-	padding: 0.4em 0.3em;
+	grid-template-columns: 2.4em 14em 1fr 6em;
+	padding: 0.5em 0.3em 0.5em 0;
 	color: var(--black);
 }
 
@@ -10,10 +10,6 @@
 		0 1px 3px 1px rgba(60, 64, 67, 0.15);
 	cursor: pointer;
 	z-index: 2;
-}
-
-.mail-preview .subject {
-	display: inline;
 }
 
 .mail-preview .content {

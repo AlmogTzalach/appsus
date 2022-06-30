@@ -69,6 +69,7 @@ function _createMail(subject, body, from, to) {
 		to,
 		created: new Date(),
 		isRead: false,
+		isStarred: false,
 	}
 }
 
