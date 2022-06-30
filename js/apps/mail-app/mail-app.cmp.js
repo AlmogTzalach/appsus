@@ -50,7 +50,7 @@ export default {
 	computed: {},
 
 	created() {
-		mailService.query().then((mails) => (this.mails = mails))
+		mailService.query('all').then((mails) => (this.mails = mails))
 	},
 
 	components: {
