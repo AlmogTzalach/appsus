@@ -12,6 +12,10 @@
 	margin-bottom: 1em;
 }
 
+.side-bar .compose-btn:hover {
+	color: var(--mail-red);
+}
+
 .side-bar div a {
 	display: flex;
 	align-items: center;
