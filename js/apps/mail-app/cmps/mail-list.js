@@ -1,24 +1,35 @@
 import mailPreview from './mail-preview.cmp.js'
+import { mailService } from '../services/mail.service.js'
 
 export default {
 	template: `
-        <section class="">
+        <section v-if="mails" class="">
             <ul class="mail-list clean-list">
                 <li v-for="mail in mails ">
-                    <mail-preview :mail="mail" />
+                    <mail-preview :mail="mail" @click="goToMail(mail.id)" />
                 </li>
             </ul>
         </section>
     `,
 
-	props: ['mails'],
+	// props: ['mails'],
 
 	data() {
-		return {}
+		return {
+			mails: null,
+		}
 	},
 
-	methods: {},
+	methods: {
+		goToMail(id) {
+			this.$router.push('/mail/' + id)
+		},
+	},
 	computed: {},
+
+	created() {
+		mailService.query().then((mails) => (this.mails = mails))
+	},
 
 	components: {
 		mailPreview,

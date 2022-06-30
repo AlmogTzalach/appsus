@@ -6,7 +6,8 @@ export default {
 	template: `
         <section class="mail-container grid">
             <mail-side-nav />
-            <mail-list :mails="mails" />
+            <!-- <mail-list :mails="mails" /> -->
+			<router-view :mails="mails"/>
         </section>
     `,
 
@@ -19,9 +20,9 @@ export default {
 	methods: {},
 	computed: {},
 
-	created() {
-		mailService.query().then((mails) => (this.mails = mails))
-	},
+	// created() {
+	// 	mailService.query().then((mails) => (this.mails = mails))
+	// },
 
 	components: {
 		mailList,

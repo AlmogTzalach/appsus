@@ -24,3 +24,7 @@
 	cursor: pointer;
 	background-color: var(--off-white);
 }
+
+.side-bar div span {
+	margin-inline-end: 1em;
+}
