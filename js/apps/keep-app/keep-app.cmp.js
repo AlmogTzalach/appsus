@@ -5,7 +5,7 @@ import addNoteBar from './cmps/add-note-bar.cmp.js'
 export default {
 	template: `
         <section class="keep-main-layout flex column align-center">
-			<add-note-bar></add-note-bar>
+			<add-note-bar @saveNote="saveNote"></add-note-bar>
             <ul class="notes-list-container clean-list">
                 <li v-for="(note, idx) in notes" :key="note.id">
                     <note-preview :note="note" @colorNote="changeNoteClr" @remove="removeNote" @updateInfo="updateInfo"></note-preview>
@@ -20,6 +20,11 @@ export default {
 	},
 	components: { notePreview, addNoteBar },
 	methods: {
+		saveNote(note) {
+			keepService.save(note).then(note => {
+				this.notes.unshift(note)
+			})
+		},
 		removeNote(id) {
 			keepService.remove(id).then(() => {
 				const idx = this.notes.findIndex(note => note.id === id)

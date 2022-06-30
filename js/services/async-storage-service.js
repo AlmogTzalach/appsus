@@ -1,3 +1,5 @@
+import { utilService } from './util-service.js'
+
 export const storageService = {
 	query,
 	get,
@@ -15,13 +17,15 @@ function query(entityType) {
 
 //get an item by id
 function get(entityType, entityId) {
-	return query(entityType).then((entities) => entities.find((entity) => entity.id === entityId))
+	return query(entityType).then(entities =>
+		entities.find(entity => entity.id === entityId)
+	)
 }
 
 //create new item
 function post(entityType, newEntity) {
-	newEntity.id = _makeId()
-	return query(entityType).then((entities) => {
+	newEntity.id = utilService.makeId()
+	return query(entityType).then(entities => {
 		entities.push(newEntity)
 		_save(entityType, entities)
 		return newEntity
@@ -30,7 +34,7 @@ function post(entityType, newEntity) {
 
 //create new items
 function postMany(entityType, newEntities) {
-	return query(entityType).then((entities) => {
+	return query(entityType).then(entities => {
 		entities.push(...newEntities)
 		_save(entityType, entities)
 		return entities
@@ -39,8 +43,8 @@ function postMany(entityType, newEntities) {
 
 //update an item
 function put(entityType, updatedEntity) {
-	return query(entityType).then((entities) => {
-		const idx = entities.findIndex((entity) => entity.id === updatedEntity.id)
+	return query(entityType).then(entities => {
+		const idx = entities.findIndex(entity => entity.id === updatedEntity.id)
 		entities.splice(idx, 1, updatedEntity)
 		_save(entityType, entities)
 		return updatedEntity
@@ -48,8 +52,8 @@ function put(entityType, updatedEntity) {
 }
 //remove an item
 function remove(entityType, entityId) {
-	return query(entityType).then((entities) => {
-		const idx = entities.findIndex((entity) => entity.id === entityId)
+	return query(entityType).then(entities => {
+		const idx = entities.findIndex(entity => entity.id === entityId)
 		entities.splice(idx, 1)
 		_save(entityType, entities)
 	})
