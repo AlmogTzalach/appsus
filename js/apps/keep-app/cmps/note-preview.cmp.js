@@ -11,7 +11,7 @@ export default {
                     <ul class="action-btns clean-list flex space-around">
                         <li class="fa-solid fa-thumbtack"></li>
                         <li class="fa-solid fa-palette" @click="openColorModal">
-							<color-picker v-if="isChooseClr" :noteId="this.note.id"></color-picker>
+							<color-picker v-if="isChooseClr" :noteId="this.note.id" @colorNote="onColorNote" @closeModal="closeColorModal"></color-picker>
 						</li>
                         <li class="fa-solid fa-envelope"></li>
                         <li class="fa-solid fa-pen-to-square"></li>
@@ -28,10 +28,16 @@ export default {
 	components: { noteTxt, noteTodos, noteImg, noteVideo, colorPicker },
 	methods: {
 		openColorModal() {
-			return (this.isChooseClr = true)
+			this.isChooseClr = true
+		},
+		closeColorModal() {
+			this.isChooseClr = false
 		},
 		onRemoveNote() {
 			this.$emit('remove', this.note.id)
+		},
+		onColorNote(color) {
+			this.$emit('colorNote', this.note.id, color)
 		},
 	},
 	computed: {
