@@ -12,6 +12,7 @@ export default {
 				@starred="toggleStar"
 				@marked="toggleMark"
 				@deleted="deleteMail"
+				@opened="toggleMark"
 			/>
         </section>
     `,
@@ -24,10 +25,22 @@ export default {
 
 	methods: {
 		toggleStar(id) {
-			this.getMail(id).isStarred = !this.getMail(id).isStarred
+			let mail = this.getMail(id)
+			mail.isStarred = !mail.isStarred
+
+			mailService.get(id).then((mail) => {
+				mail.isStarred = !mail.isStarred
+				mailService.update(mail)
+			})
 		},
 		toggleMark(id) {
-			this.getMail(id).isRead = !this.getMail(id).isRead
+			let mail = this.getMail(id)
+			mail.isRead = !mail.isRead
+
+			mailService.get(id).then((mail) => {
+				mail.isRead = !mail.isRead
+				mailService.update(mail)
+			})
 		},
 		deleteMail(id) {},
 		getMail(id) {

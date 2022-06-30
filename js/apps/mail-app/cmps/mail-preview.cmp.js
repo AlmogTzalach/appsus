@@ -21,7 +21,6 @@ export default {
 	},
 	methods: {
 		onStar() {
-			this.mail.isStarred = !this.mail.isStarred
 			this.$emit('starred', this.mail.id)
 		},
 	},
