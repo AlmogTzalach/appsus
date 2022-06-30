@@ -1,13 +1,12 @@
+@import url(./keep-main-layout.css);
 
-@import url(/css/apps/keep/keep-main-layout.css);
+@import url(./cmps/notes-list.css);
+@import url(./cmps/note-container.css);
+@import url(./cmps/note-img.css);
+@import url(./cmps/note-todos.css);
+@import url(./cmps/note-txt.css);
+@import url(./cmps/note-video.css);
 
-@import url(/css/apps/keep/cmps/notes-list.css);
-@import url(/css/apps/keep/cmps/note-container.css);
-@import url(/css/apps/keep/cmps/note-img.css);
-@import url(/css/apps/keep/cmps/note-todos.css);
-@import url(/css/apps/keep/cmps/note-txt.css);
-@import url(/css/apps/keep/cmps/note-video.css);
-
-@import url(/css/apps/keep/action-btns.css);
-@import url(/css/apps/keep/add-note-bar.css);
-@import url(/css/apps/keep/edit-note-box.css);
+@import url(./action-btns.css);
+@import url(./add-note-bar.css);
+@import url(./edit-note-box.css);
