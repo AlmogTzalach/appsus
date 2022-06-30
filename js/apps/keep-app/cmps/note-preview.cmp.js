@@ -14,7 +14,7 @@ export default {
 							<color-picker v-if="isChooseClr" :noteId="this.note.id" @colorNote="onColorNote" @closeModal="closeColorModal"></color-picker>
 						</li>
                         <li class="fa-solid fa-envelope"></li>
-                        <li class="fa-solid fa-pen-to-square"></li>
+                        <li class="fa-solid fa-pen-to-square" @click="onEditNote"></li>
                         <li class="fa-solid fa-trash-can" @click="onRemoveNote"></li>
                     </ul>
         </section>
@@ -33,8 +33,11 @@ export default {
 		closeColorModal() {
 			this.isChooseClr = false
 		},
+		onEditNote() {
+			this.$emit('editNote', this.note)
+		},
 		onRemoveNote() {
-			this.$emit('remove', this.note.id)
+			this.$emit('removeNote', this.note.id)
 		},
 		onColorNote(color) {
 			this.$emit('colorNote', this.note.id, color)

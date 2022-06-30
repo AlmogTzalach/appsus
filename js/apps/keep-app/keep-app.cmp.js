@@ -5,10 +5,10 @@ import addNoteBar from './cmps/add-note-bar.cmp.js'
 export default {
 	template: `
         <section class="keep-main-layout flex column align-center">
-			<add-note-bar @saveNote="saveNote"></add-note-bar>
+			<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
             <ul class="notes-list-container clean-list">
                 <li v-for="(note, idx) in notes" :key="note.id">
-                    <note-preview :note="note" @colorNote="changeNoteClr" @remove="removeNote" @updateInfo="updateInfo"></note-preview>
+                    <note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
                 </li>
             </ul>
         </section>
@@ -16,14 +16,30 @@ export default {
 	data() {
 		return {
 			notes: null,
+			noteToEdit: null,
 		}
 	},
 	components: { notePreview, addNoteBar },
 	methods: {
+		closeEditBox() {
+			this.noteToEdit = null
+		},
+		editNote(note) {
+			this.noteToEdit = note
+		},
 		saveNote(note) {
-			keepService.save(note).then(note => {
-				this.notes.unshift(note)
-			})
+			if (!note.id) {
+				keepService.save(note).then(note => {
+					this.notes.unshift(note)
+				})
+			} else {
+				keepService.update(note).then(() => {
+					this.notes = null
+					keepService.query().then(notes => {
+						this.notes = notes
+					})
+				})
+			}
 		},
 		removeNote(id) {
 			keepService.remove(id).then(() => {
@@ -44,6 +60,6 @@ export default {
 	},
 	computed: {},
 	created() {
-		this.notes = keepService.query().then(notes => (this.notes = notes))
+		keepService.query().then(notes => (this.notes = notes))
 	},
 }
