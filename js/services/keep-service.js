@@ -40,22 +40,23 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				type: 'noteTxt',
-				info: { txt: 'Note No.1' },
+				info: { title: '', txt: 'Note No.1' },
 			},
 			{
 				id: utilService.makeId(),
 				type: 'noteTxt',
-				info: { txt: 'Note No.2' },
+				info: { title: 'A Title Maybe?', txt: 'Note No.2' },
 			},
 			{
 				id: utilService.makeId(),
 				type: 'noteTxt',
-				info: { txt: 'Note No.3' },
+				info: { title: '', txt: 'Note No.3' },
 			},
 			{
 				id: utilService.makeId(),
 				type: 'noteTodos',
 				info: {
+					title: 'TODO List',
 					todos: [
 						{
 							task: 'Buy snacks',

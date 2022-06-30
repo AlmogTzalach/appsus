@@ -1,13 +1,14 @@
 import { keepService } from '../../services/keep-service.js'
-import { eventBus } from '../../services/eventBus-service.js'
 import notePreview from './cmps/note-preview.cmp.js'
+import addNoteBar from './cmps/add-note-bar.cmp.js'
 
 export default {
 	template: `
-        <section >
+        <section class="keep-main-layout flex column align-center">
+			<add-note-bar></add-note-bar>
             <ul class="notes-list-container clean-list">
                 <li v-for="(note, idx) in notes" :key="note.id">
-                    <note-preview :note="note" @colorNote="changeNoteClr" @remove="removeNote"></note-preview>
+                    <note-preview :note="note" @colorNote="changeNoteClr" @remove="removeNote" @updateInfo="updateInfo"></note-preview>
                 </li>
             </ul>
         </section>
@@ -17,7 +18,7 @@ export default {
 			notes: null,
 		}
 	},
-	components: { notePreview },
+	components: { notePreview, addNoteBar },
 	methods: {
 		removeNote(id) {
 			keepService.remove(id).then(() => {
@@ -28,6 +29,11 @@ export default {
 		changeNoteClr(id, color) {
 			const note = this.notes.find(note => note.id === id)
 			note.bgClr = color
+			keepService.update(note).then(note => console.log(note))
+		},
+		updateInfo(id, newInfo) {
+			const note = this.notes.find(note => note.id === id)
+			note.info = newInfo
 			keepService.update(note).then(note => console.log(note))
 		},
 	},

@@ -2,9 +2,11 @@ export default {
 	template: `
           <section class="note-video">
                 <h4 class="video-title">{{this.title}}</h4>
-                <iframe width="330" height="315"
-                :src="this.src">
-                </iframe>
+				<div class="video-container">
+					<iframe class="responsive-iframe"
+						:src="this.src">
+					</iframe>
+				</div>
           </section>
           `,
 	props: ['info'],

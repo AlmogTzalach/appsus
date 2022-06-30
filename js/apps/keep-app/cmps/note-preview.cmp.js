@@ -7,7 +7,7 @@ import colorPicker from './color-picker.cmp.js'
 export default {
 	template: `
         <section class="note-container flex column space-between" :style="noteBgClr">
-                <component :is="note.type" :info="note.info"></component>
+                <component :is="note.type" :info="note.info" @updateInfo="onUpdateInfo"></component>
                     <ul class="action-btns clean-list flex space-around">
                         <li class="fa-solid fa-thumbtack"></li>
                         <li class="fa-solid fa-palette" @click="openColorModal">
@@ -38,6 +38,9 @@ export default {
 		},
 		onColorNote(color) {
 			this.$emit('colorNote', this.note.id, color)
+		},
+		onUpdateInfo(newInfo) {
+			this.$emit('updateInfo', this.note.id, newInfo)
 		},
 	},
 	computed: {

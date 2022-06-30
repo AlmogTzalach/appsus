@@ -1,8 +1,12 @@
 
+@import url(/css/apps/keep/keep-main-layout.css);
+
 @import url(/css/apps/keep/cmps/notes-list.css);
 @import url(/css/apps/keep/cmps/note-container.css);
 @import url(/css/apps/keep/cmps/note-img.css);
 @import url(/css/apps/keep/cmps/note-todos.css);
 @import url(/css/apps/keep/cmps/note-txt.css);
 @import url(/css/apps/keep/cmps/note-video.css);
+
 @import url(/css/apps/keep/action-btns.css);
+@import url(/css/apps/keep/add-note-bar.css);
