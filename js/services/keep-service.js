@@ -80,6 +80,14 @@ function _createNotes() {
 					src: 'https://awesome-vue.js.org/hero.png',
 				},
 			},
+			{
+				id: utilService.makeId(),
+				type: 'noteVideo',
+				info: {
+					title: 'Vue.js Explained in 100 Seconds',
+					src: 'https://www.youtube.com/embed/nhBVL41-_Cw',
+				},
+			},
 		]
 		utilService.saveToStorage(NOTES_KEY, notes)
 	}
