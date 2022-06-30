@@ -1,4 +1,4 @@
-import addNoteBox from './add-note-box.cmp.js'
+import editNoteBox from './edit-note-box.cmp.js'
 
 export default {
 	template: `
@@ -14,16 +14,21 @@ export default {
                         </ul>
                 </div>
             </div>
-            <add-note-box v-if="this.noteType" :noteType="this.noteType" @saveNote="onSaveNote"></add-note-box>
+            <edit-note-box v-if="isEditOrAdd" :noteToEdit="this.noteToEdit" :noteType="this.noteType" @saveNote="onSaveNote" @closeEditBox="closeEditBox"></edit-note-box>
         </section>
     `,
-	components: { addNoteBox },
+	components: { editNoteBox },
+	props: ['noteToEdit'],
 	data() {
 		return {
 			noteType: null,
 		}
 	},
 	methods: {
+		closeEditBox() {
+			this.noteType = null
+			this.$emit('closeEditBox')
+		},
 		changeNoteType(type) {
 			this.noteType = type
 		},
@@ -31,6 +36,12 @@ export default {
 			this.$emit('saveNote', note)
 		},
 	},
-	computed: {},
+	computed: {
+		isEditOrAdd() {
+			if (this.noteToEdit || this.noteType) return true
+			// return { true: this.noteToEdit || this.noteType }
+		},
+	},
 	created() {},
+	watch: {},
 }
