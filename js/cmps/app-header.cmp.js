@@ -1,16 +1,18 @@
 export default {
 	template: `
-		<header class="app-header">
-			<div class="logo">
-			<h3>Appsus</h3>
-			</div>
+		<header class="app-header flex space-between align-center">
+			<router-link to="/">
+				<div class="logo flex align-center">
+					<img src="./assets/horse-head-logo.svg" alt="Horse logo">
+					<h3>Appsus</h3>
+				</div>
+			</router-link>
 			<nav class="nav-bar flex align-center">
-				<router-link to="/">Home</router-link>
-				<router-link to="/keep">Keep</router-link>
-				<router-link to="/mail/inbox">Mail</router-link>
+				<router-link to="/keep"><span class="fa-solid fa-file"></span></router-link>
+				<router-link to="/mail/inbox"><span class="fa-solid fa-envelope"></span></router-link>
+				<router-link to="/mail/inbox"><span class="fa-solid fa-book"></span></router-link>
 			</nav>
 		</header>
-		<hr />
 	`,
 
 	data() {

@@ -1,0 +1,51 @@
+.app-header {
+	padding-block: 1em;
+	border-bottom: 1px solid var(--icon-grey);
+}
+
+.app-header .logo {
+	font-size: 1.5em;
+	font-family: open-sans;
+	margin-inline-start: 1em;
+}
+
+.app-header .logo img {
+	width: 1.2em;
+	margin-inline-end: 0.3em;
+}
+
+.app-header a {
+	margin-inline-end: 1.75em;
+	text-decoration: none;
+	color: var(--black);
+	/* padding: 0.7em; */
+}
+
+.app-header .nav-bar a {
+	font-size: 1.5em;
+	color: var(--icon-grey);
+}
+
+.app-header .nav-bar .fa-file {
+	color: #feefc3;
+}
+
+.app-header .nav-bar .fa-file:hover {
+	color: var(--keep-yellow);
+}
+
+.app-header .nav-bar .fa-envelope {
+	color: #dcada9;
+}
+
+.app-header .nav-bar .fa-envelope:hover {
+	color: var(--mail-red);
+}
+
+.app-header .nav-bar .fa-book {
+	color: #8aade5;
+}
+
+.app-header .nav-bar .fa-book:hover {
+	color: #1b74e9;
+}

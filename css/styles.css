@@ -7,6 +7,9 @@
 @import url(./basics/layout.css);
 @import url(./basics/helpers.css);
 
+/* components */
+@import url(./cmps/app-header.css);
+
 /* Mail app */
 @import url(./apps/mail/mail-app.css);
 

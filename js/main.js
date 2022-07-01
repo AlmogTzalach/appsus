@@ -6,9 +6,12 @@ import { router } from './router.js'
 const options = {
 	template: `
 		<section>
-			<app-header />
 			<!-- <user-msg/> -->
-			<router-view />
+
+			<div class="page-container">
+				<app-header />
+				<router-view />
+			</div>
 			<app-footer />
 		</section>
 	`,
