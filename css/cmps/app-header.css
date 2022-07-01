@@ -1,6 +1,7 @@
 .app-header {
 	padding-block: 1em;
 	border-bottom: 1px solid var(--icon-grey);
+	margin-block-end: 1.3em;
 }
 
 .app-header .logo {
