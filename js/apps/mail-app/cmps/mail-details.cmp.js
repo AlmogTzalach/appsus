@@ -2,19 +2,23 @@ import { mailService } from '../services/mail.service.js'
 
 export default {
 	template: `
-        <section v-if="mail" class="mail-details flex">
+        <section v-if="mail" class="mail-details flex column">
 			<div class="mail-actions">
-				<button @click="onBack">Back</button>
+				<button @click="onBack" title="Back"><span class="fa-solid fa-arrow-left"></span></button>
 				<button @click="onStar">
 					<span class="star-icon fa-star" :class="starType"></span> 
 				</button>
-				<button @click="onMark">Mark as read</button>
-				<button @click="onDelete">Delete</button>
+				<button @click="onMark" title="Mark as unread"><span class="fa-solid fa-envelope-open-text"></span></button>
+				<button @click="onDelete" title="delete"><span class="fa-solid fa-trash"></span></button>
 
 			</div>
-            <h2> {{ mail.subject }} </h2>
-            <h3> {{ mail.from }} </h3>
-            <p> {{ mail.body }} </p>
+
+			<div class="mail-content flex column">
+				<h2> {{ mail.subject }} </h2>
+				<h3>from: {{ mail.from }} </h3>
+				<h4>to: {{ mail.to }} </h4>
+				<p> {{ mail.body }} </p>
+			</div>
         </section>
     `,
 
@@ -36,6 +40,8 @@ export default {
 		},
 		onMark() {
 			this.$emit('marked', this.mail.id)
+			// return to mail list if user chose to mark the msg as unread
+			this.onBack()
 		},
 		onDelete() {
 			this.$emit('deleted', this.mail.id)
