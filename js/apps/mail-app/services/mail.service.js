@@ -13,6 +13,7 @@ export const mailService = {
 	get,
 	update,
 	createMailToSend,
+	getUser,
 }
 
 function query(status, txt = '') {
@@ -46,6 +47,10 @@ function get(mailId) {
 
 function update(mail) {
 	return storageService.put(MAIL_KEY, mail)
+}
+
+function getUser() {
+	return USER
 }
 
 function save(mail) {

@@ -1,10 +1,12 @@
+import { mailService } from '../services/mail.service.js'
+
 export default {
 	template: `
         <section class="mail-preview grid" :class="isRead">
 			<div class="star-icon-container" @click.stop="onStar">
 				<span class="star-icon fa-star" :class="starType" ></span>
 			</div>
-            <div class=address> {{ mail.from }} </div>
+            <div class=address> {{ computedAddress }} </div>
             <div class="mail-txt">
                 <span class="subject"> {{ mail.subject }} </span>
                 <span> - </span>
@@ -25,6 +27,10 @@ export default {
 		},
 	},
 	computed: {
+		computedAddress() {
+			const username = mailService.getUser()
+			return username === this.mail.to ? this.mail.from : 'To: ' + this.mail.to
+		},
 		computedDate() {
 			const date = new Date(this.mail.created)
 			const currDate = new Date()

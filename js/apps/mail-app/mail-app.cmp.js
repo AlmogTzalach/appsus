@@ -42,12 +42,17 @@ export default {
 				mailService.update(mail)
 			})
 		},
-		deleteMail(id) {},
-		getMail(id) {
-			return this.mails.find((mail) => mail.id === id)
+		deleteMail(id) {
+			const idx = this.mails.findIndex((mail) => mail.id === id)
+			this.mails.splice(idx, 1)
+
+			mailService.remove(id)
 		},
 		onMailSent(mail) {
 			this.mails.unshift(mail)
+		},
+		getMail(id) {
+			return this.mails.find((mail) => mail.id === id)
 		},
 	},
 	computed: {},

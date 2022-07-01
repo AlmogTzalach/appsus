@@ -1,5 +1,5 @@
 .mail-container {
 	grid-template-columns: 16em 1fr;
 	font-size: 0.875em;
-	margin-top: 2em;
+	margin-block: 2em 1em;
 }
