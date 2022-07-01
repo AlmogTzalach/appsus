@@ -1,5 +1,6 @@
 .mail-compose {
 	position: relative;
+	max-width: 800px;
 }
 
 .mail-compose .back-btn {
@@ -23,16 +24,42 @@
 }
 
 .compose-form > *:not(:last-child) {
+	font-family: open-sans;
 	outline: none;
 	border: none;
-	max-width: 800px;
-	border-bottom: 1px solid #eceff1;
 	margin-bottom: 1em;
 }
 
 .compose-form .compose-subject {
+	font-size: 1.5em;
+	margin-bottom: 2em;
+	border-bottom: 1px solid #eceff1;
+}
+
+.compose-form .compose-to {
+	font-size: 1em;
+	margin-bottom: 2em;
+	border-bottom: 1px solid #eceff1;
 }
 
 .compose-form textarea {
-	font-family: open-sans;
+	resize: none;
+}
+
+.compose-form .compose-send {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-radius: 0.2em;
+	padding: 0.5em 1em;
+	font-family: open-sans-bold;
+	font-size: 1em;
+	color: white;
+	background-color: #1a73e8;
+	border: none;
+}
+
+.compose-form .compose-send:hover {
+	cursor: pointer;
+	background-color: #1d66c5;
 }

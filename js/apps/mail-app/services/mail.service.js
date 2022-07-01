@@ -12,6 +12,7 @@ export const mailService = {
 	save,
 	get,
 	update,
+	createMailToSend,
 }
 
 function query(status, txt = '') {
@@ -48,8 +49,27 @@ function update(mail) {
 }
 
 function save(mail) {
-	if (mail.id) return storageService.put(MAIL_KEY, mail)
-	else return storageService.post(MAIL_KEY, mail)
+	return storageService.post(MAIL_KEY, mail)
+}
+
+function createMailToSend(subject, body, to) {
+	const mail = _createMail(subject, body, USER, to)
+	mail.isRead = true
+	save(mail)
+	return mail
+}
+
+function _createMail(subject, body, from, to) {
+	return {
+		id: utilService.makeId(),
+		subject,
+		body,
+		from,
+		to,
+		created: new Date(),
+		isRead: false,
+		isStarred: false,
+	}
 }
 
 function _createMails() {
@@ -329,17 +349,4 @@ function _createMails() {
 		storageService.postMany(MAIL_KEY, mails)
 	}
 	return mails
-}
-
-function _createMail(subject, body, from, to) {
-	return {
-		id: utilService.makeId(),
-		subject,
-		body,
-		from,
-		to,
-		created: new Date(),
-		isRead: false,
-		isStarred: false,
-	}
 }

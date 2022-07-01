@@ -6,13 +6,13 @@ export default {
 	template: `
         <section class="mail-container grid">
             <mail-side-nav />
-            <!-- <mail-list :mails="mails" /> -->
 			<router-view 
 				:mails="mails" 
 				@starred="toggleStar"
 				@marked="toggleMark"
 				@deleted="deleteMail"
 				@opened="toggleMark"
+				@mailSent="onMailSent"
 			/>
         </section>
     `,
@@ -45,6 +45,9 @@ export default {
 		deleteMail(id) {},
 		getMail(id) {
 			return this.mails.find((mail) => mail.id === id)
+		},
+		onMailSent(mail) {
+			this.mails.unshift(mail)
 		},
 	},
 	computed: {},
