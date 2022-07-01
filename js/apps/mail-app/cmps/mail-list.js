@@ -1,23 +1,27 @@
 import mailPreview from './mail-preview.cmp.js'
+import { mailService } from '../services/mail.service.js'
 
 export default {
 	template: `
-        <section v-if="mails" class="">
-            <ul class="mail-list clean-list">
-                <li v-for="mail in mails" :key="mail.id">
+        <section>
+            <ul v-if="areMailsShown" class="mail-list clean-list">
+                <li v-for="mail in mailsToShow" :key="mail.id">
                     <mail-preview :mail="mail"
 						@click="openMail(mail.id)"
 						@starred="toggleStar"
 					/>
                 </li>
             </ul>
+			<div v-else class="no-mails-msg">No mails match your criteria</div>
         </section>
     `,
 
 	props: ['mails'],
 
 	data() {
-		return {}
+		return {
+			mailsToShow: null,
+		}
 	},
 
 	methods: {
@@ -33,14 +37,21 @@ export default {
 			const mail = this.$emit('starred', id)
 		},
 	},
-	computed: {},
+	computed: {
+		areMailsShown() {
+			if (!this.mailsToShow || !this.mailsToShow.length) return false
+			return true
+		},
+	},
 
-	created() {},
+	maounted() {
+		// this.mailsToShow = this.mails
+	},
 
 	watch: {
 		'$route.params.status': {
 			handler(status) {
-				// console.log(status)
+				mailService.query(status).then((mails) => (this.mailsToShow = mails))
 			},
 			immediate: true,
 		},

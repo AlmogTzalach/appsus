@@ -16,22 +16,30 @@ export const mailService = {
 	getUser,
 }
 
-function query(status, txt = '') {
+function query(status) {
 	return storageService.query(MAIL_KEY).then((mails) => {
 		if (status === 'all') {
 			return mails
 		} else if (status === 'inbox') {
 			mails = mails.filter((mail) => mail.to === USER)
+		} else if (status === 'starred') {
+			mails = mails.filter((mail) => mail.isStarred)
+		} else if (status === 'sent') {
+			mails = mails.filter((mail) => mail.from === USER)
+		} else if (status === 'drafts') {
+			mails = mails.filter((mail) => mail.isDraft)
+		} else if (status === 'trash') {
+			mails = mails.filter((mail) => mail.isTrashed)
 		}
 
-		mails = mails.filter((mail) => {
-			return (
-				mail.subject.includes(txt) ||
-				mail.body.includes(txt) ||
-				mail.from.includes(txt) ||
-				mail.to.includes(txt)
-			)
-		})
+		// mails = mails.filter((mail) => {
+		// 	return (
+		// 		mail.subject.includes(txt) ||
+		// 		mail.body.includes(txt) ||
+		// 		mail.from.includes(txt) ||
+		// 		mail.to.includes(txt)
+		// 	)
+		// })
 
 		return mails
 	})
