@@ -16,7 +16,7 @@ export const mailService = {
 	getUser,
 }
 
-function query(status) {
+function query(status, txt = '') {
 	return storageService.query(MAIL_KEY).then((mails) => {
 		if (status === 'all') {
 			return mails
@@ -32,14 +32,14 @@ function query(status) {
 			mails = mails.filter((mail) => mail.isTrashed)
 		}
 
-		// mails = mails.filter((mail) => {
-		// 	return (
-		// 		mail.subject.includes(txt) ||
-		// 		mail.body.includes(txt) ||
-		// 		mail.from.includes(txt) ||
-		// 		mail.to.includes(txt)
-		// 	)
-		// })
+		mails = mails.filter((mail) => {
+			return (
+				mail.subject.includes(txt) ||
+				mail.body.includes(txt) ||
+				mail.from.includes(txt) ||
+				mail.to.includes(txt)
+			)
+		})
 
 		return mails
 	})
@@ -89,6 +89,7 @@ function _createMails() {
 	let mails = utilService.loadFromStorage(MAIL_KEY)
 	if (!mails || !mails.length) {
 		mails = []
+		// demo data
 		mails.push(
 			_createMail(
 				'Hi!',
@@ -97,7 +98,14 @@ function _createMails() {
 				'anton@gmail.com'
 			)
 		)
-		mails.push(_createMail('Hi!!!!', 'Hello lorem ipsum', 'anton@gmail.com', USER))
+		mails.push(
+			_createMail(
+				'Nigerian Prince Says Hi',
+				'I am Barr. Phillip Butulezi, an attorney of law to a deceased Immigrant property Magnate, who was based in the U.K, also referred to as my client.On the 25th of July 2000, my client, his wife, and their two Children died in the Air France concord plane crash bound for New York. They were on their way to a world cruise.Prior to that accident and since then, I have been managing Mr Schoelers properties here in the U.K. Some of these properties, at the time of the accident, were already put on sale. I, as his attorney, monitored the sale of the properties, and the depositing of the proceeds into Mr Schoelers main U.K bank account. I have contacted you initially to assist me in repatriating the money, and possibly ownership of some of the property left behind by my client; this is to prevent ownership of both reverting to the state. By U.K law, ownership of funds in current bank accounts unattended for six years will automatically revert back to her majestys government treasury. However, the legal procedure to activate this takes about three months, of which there are just about two months left.',
+				'anton@gmail.com',
+				USER
+			)
+		)
 		mails.push(
 			_createMail(
 				'Muki invited you to GitHub',

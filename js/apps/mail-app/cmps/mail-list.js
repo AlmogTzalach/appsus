@@ -1,9 +1,11 @@
-import mailPreview from './mail-preview.cmp.js'
 import { mailService } from '../services/mail.service.js'
+import mailPreview from './mail-preview.cmp.js'
+import mailFilter from './mail-filter.cmp.js'
 
 export default {
 	template: `
         <section>
+			<mail-filter @searched="onSearch" :status="$route.params.status"/>
             <ul v-if="areMailsShown" class="mail-list clean-list">
                 <li v-for="mail in mailsToShow" :key="mail.id">
                     <mail-preview :mail="mail"
@@ -21,6 +23,7 @@ export default {
 	data() {
 		return {
 			mailsToShow: null,
+			searchTxt: '',
 		}
 	},
 
@@ -37,6 +40,10 @@ export default {
 			this.$emit('starred', id)
 			const mail = this.mailsToShow.find((mail) => mail.id === id)
 			mail.isStarred = !mail.isStarred
+		},
+		onSearch(searchTxt) {
+			const status = this.$route.params.status
+			mailService.query(status, searchTxt).then((mails) => (this.mailsToShow = mails))
 		},
 	},
 	computed: {
@@ -61,5 +68,6 @@ export default {
 
 	components: {
 		mailPreview,
+		mailFilter,
 	},
 }

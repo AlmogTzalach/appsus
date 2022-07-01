@@ -1,0 +1,19 @@
+.mail-filter {
+	display: flex;
+	max-width: 800px;
+}
+
+.mail-filter .search-input {
+	font-family: open-sans;
+	font-size: 1em;
+	padding-block: 0.5em;
+	padding-inline-start: 1.1em;
+	line-height: 2.143;
+	border-radius: 1.6em;
+	outline: none;
+	border: 1px solid var(--black);
+	margin-bottom: 1em;
+	margin-inline: 2em;
+	width: 100%;
+	display: block;
+}
