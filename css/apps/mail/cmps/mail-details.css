@@ -36,11 +36,11 @@
 	background-color: rgb(240 237 237);
 }
 
+.mail-content > * {
+	max-width: 800px;
+}
+
 .mail-content h2,
 .mail-content h4 {
 	margin-bottom: 2em;
-}
-
-.mail-content p {
-	max-width: 800px;
 }
