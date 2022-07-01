@@ -12,7 +12,7 @@ const options = {
 				<app-header />
 				<router-view />
 			</div>
-			<app-footer />
+			<!-- <app-footer /> -->
 		</section>
 	`,
 

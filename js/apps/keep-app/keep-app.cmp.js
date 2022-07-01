@@ -4,14 +4,16 @@ import addNoteBar from './cmps/add-note-bar.cmp.js'
 
 export default {
 	template: `
-        <section class="keep-main-layout flex column align-center">
-			<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
-            <ul class="notes-list-container clean-list">
-                <li v-for="(note, idx) in notes" :key="note.id">
-                    <note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
-                </li>
-            </ul>
-        </section>
+		<section class="flex column align-center">
+			<section class="keep-main-layout flex column align-center">
+				<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
+				<ul class="notes-list-container clean-list">
+					<li v-for="(note, idx) in notes" :key="note.id">
+						<note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
+					</li>
+				</ul>
+			</section>
+		</section>
     `,
 	data() {
 		return {

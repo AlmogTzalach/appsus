@@ -1,0 +1,59 @@
+
+/* MOBILE-SMALL */
+@media (min-width: 350px) {
+.keep-main-layout {
+    max-width: 320px;
+}
+
+.notes-list-container {
+    column-count: 1;
+}
+}
+
+/* X-SMALL */
+@media (min-width: 440px) {
+.keep-main-layout {
+    max-width: 400px;
+}
+
+.notes-list-container {
+    column-count: 2;
+}
+}
+
+/* SMALL */
+@media (min-width: 640px) {
+.keep-main-layout {
+    max-width: 600px;
+}
+
+.notes-list-container {
+    column-count: 3;
+}
+
+}
+
+/* MEDIUM */
+@media (min-width: 840px) {
+.keep-main-layout {
+    max-width: 800px;
+}
+
+.notes-list-container {
+    column-count: 4;
+}
+
+}
+
+/* LARGE */
+@media (min-width: 1100px) {
+.keep-main-layout {
+    max-width: 1060px;
+}
+
+.notes-list-container {
+    column-count: 5;
+}
+
+}
+  
