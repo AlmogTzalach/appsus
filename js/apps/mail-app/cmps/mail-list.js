@@ -34,7 +34,9 @@ export default {
 			}
 		},
 		toggleStar(id) {
-			const mail = this.$emit('starred', id)
+			this.$emit('starred', id)
+			const mail = this.mailsToShow.find((mail) => mail.id === id)
+			mail.isStarred = !mail.isStarred
 		},
 	},
 	computed: {

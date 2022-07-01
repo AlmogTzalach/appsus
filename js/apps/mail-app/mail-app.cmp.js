@@ -5,9 +5,9 @@ import mailSideNav from './cmps/mail-side-nav.cmp.js'
 export default {
 	template: `
         <section class="mail-container grid">
-            <mail-side-nav />
+            <mail-side-nav :unreadCount="unreadMailsCount" />
 			<router-view 
-				:mails="mails" 
+				:mails="mails"	
 				@starred="toggleStar"
 				@marked="toggleMark"
 				@deleted="deleteMail"
@@ -55,7 +55,17 @@ export default {
 			return this.mails.find((mail) => mail.id === id)
 		},
 	},
-	computed: {},
+
+	computed: {
+		unreadMailsCount() {
+			if (!this.mails) return 0
+			const user = mailService.getUser()
+			return this.mails.reduce((acc, curr) => {
+				if (curr.to === user && !curr.isRead) acc++
+				return acc
+			}, 0)
+		},
+	},
 
 	created() {
 		mailService.query('all').then((mails) => (this.mails = mails))

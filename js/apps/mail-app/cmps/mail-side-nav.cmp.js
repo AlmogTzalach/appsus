@@ -2,7 +2,7 @@ export default {
 	template: `
         <section class="side-bar flex">
             <button class="compose-btn" @click="onCompose"><span class="fa-solid fa-pencil"></span> Compose</button>
-            <div><router-link to="/mail/inbox"><span class="fa-solid fa-inbox" />Inbox</router-link></div>
+            <div><router-link to="/mail/inbox"><span class="fa-solid fa-inbox" /> {{ inboxText }}</router-link></div>
             <div><router-link to="/mail/starred"><span class="fa-solid fa-star" />Starred</router-link></div>
             <div><router-link to="/mail/sent"><span class="fa-solid fa-paper-plane" />Sent</router-link></div>
             <div><router-link to="/mail/drafts"><span class="fa-solid fa-file" />Drafts</router-link></div>
@@ -10,12 +10,20 @@ export default {
         </section>
     `,
 
+	props: ['unreadCount'],
+
 	methods: {
 		onCompose() {
 			this.$router.push('/mail/compose')
 		},
 	},
-	computed: {},
+	computed: {
+		inboxText() {
+			let txt = 'Inbox'
+			if (this.unreadCount) txt += ` (${this.unreadCount})`
+			return txt
+		},
+	},
 
 	created() {},
 
