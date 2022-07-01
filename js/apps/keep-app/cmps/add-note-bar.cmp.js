@@ -3,7 +3,7 @@ import editNoteBox from './edit-note-box.cmp.js'
 export default {
 	template: `
         <section class="add-note-container flex column align-center">
-            <div class="add-note-bar flex space-between">
+            <div v-if="!isEditOrAdd" class="add-note-bar flex space-between">
                 <span>Take a note...</span>
                 <div class="note-type-select">
                         <ul class="note-types clean-list flex space-around">

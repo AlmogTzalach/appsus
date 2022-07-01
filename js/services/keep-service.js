@@ -40,17 +40,17 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				type: 'noteTxt',
-				info: { title: '', txt: 'Note No.1' },
+				info: { title: '', txt: 'Password: 12345678' },
 			},
 			{
 				id: utilService.makeId(),
 				type: 'noteTxt',
-				info: { title: 'A Title Maybe?', txt: 'Note No.2' },
+				info: { title: 'Important!', txt: "Don't forget to s" },
 			},
 			{
 				id: utilService.makeId(),
 				type: 'noteTxt',
-				info: { title: '', txt: 'Note No.3' },
+				info: { title: '', txt: 'I parked at: Jabotinsky 18' },
 			},
 			{
 				id: utilService.makeId(),
@@ -87,6 +87,97 @@ function _createNotes() {
 				info: {
 					title: 'Vue.js Explained in 100 Seconds',
 					src: 'https://www.youtube.com/embed/nhBVL41-_Cw',
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteTxt',
+				info: { title: '', txt: 'New Password: 123456789' },
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteTodos',
+				info: {
+					title: 'TODO List',
+					todos: [
+						{
+							task: 'Fix my toilet',
+							isDone: false,
+						},
+						{
+							task: 'Call my dad to help fix my toilet',
+							isDone: true,
+						},
+						{
+							task: 'Call someone how can actually fix a toilet',
+							isDone: false,
+						},
+					],
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteVideo',
+				info: {
+					title: 'Top 10 Top 10 Lists',
+					src: 'https://www.youtube.com/embed/LrZogmmpF5I',
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteImg',
+				info: {
+					title: 'Family Forever 💖',
+					src: 'https://www.rd.com/wp-content/uploads/2019/09/156-LLC-scaled.jpg?resize=700,466',
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteTxt',
+				info: {
+					title: 'NEVER USE SEMICOLONS!',
+					txt: 'Unless you really want to;',
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteTodos',
+				info: {
+					title: 'TODO List',
+					todos: [
+						{
+							task: 'Fix that service bug',
+							isDone: true,
+						},
+						{
+							task: 'Fix that other service bug',
+							isDone: true,
+						},
+						{
+							task: 'Fix that model bug',
+							isDone: true,
+						},
+						{
+							task: 'Fix the bugs i made while fixing bugs',
+							isDone: false,
+						},
+					],
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteTxt',
+				info: {
+					title: 'Call grandma!',
+					txt: '052-5381648',
+				},
+			},
+			{
+				id: utilService.makeId(),
+				type: 'noteTxt',
+				info: {
+					title: 'Note to self',
+					txt: "Don't forget to use notes",
 				},
 			},
 		]
