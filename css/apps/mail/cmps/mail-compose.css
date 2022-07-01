@@ -1,0 +1,38 @@
+.mail-compose {
+	position: relative;
+}
+
+.mail-compose .back-btn {
+	font-size: 1.4em;
+	margin-bottom: 3em;
+	padding-bottom: 1em;
+	text-align: center;
+	padding: 0;
+	width: 2.2em;
+	height: 2.2em;
+	border: none;
+	background-color: white;
+	color: var(--icon-grey);
+	border-radius: 50%;
+	border: 5px solid transparent;
+}
+
+.mail-compose .back-btn:hover {
+	color: var(--black);
+	background-color: rgb(240 237 237);
+}
+
+.compose-form > *:not(:last-child) {
+	outline: none;
+	border: none;
+	max-width: 800px;
+	border-bottom: 1px solid #eceff1;
+	margin-bottom: 1em;
+}
+
+.compose-form .compose-subject {
+}
+
+.compose-form textarea {
+	font-family: open-sans;
+}
