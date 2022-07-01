@@ -1,13 +1,16 @@
 export default {
 	template: `
         <section class="edit-note-box">
-            <input v-model="this.title" type="text" placeholder="Title" class="title-input">
-            <hr>
-            <textarea v-model="this.noteInfo" :placeholder="noteTypePlaceholder" cols="30" rows="10" class="note-input"></textarea>
-            <div class="note-add-btns flex space-between">
-                <button @click="onDiscardNote">Discard</button>
-                <button @click="onSaveNote">Save</button>
-            </div>
+			<form @submit.prevent="onSaveNote">
+				<input v-model="this.title" type="text" placeholder="Title" class="title-input">
+				<hr>
+				<textarea v-model="this.noteInfo" :placeholder="noteTypePlaceholder" cols="30" rows="10" class="note-input" required></textarea>
+				<div class="note-edit-btns flex space-between">
+					<input type="button" @click="onDiscardNote" value="Discard">
+					<!-- <button @click="onSaveNote">Save</button> -->
+					<input type="submit" value="Save">
+				</div>
+			</form>
         </section>
     `,
 	props: ['noteType', 'noteToEdit'],
@@ -25,10 +28,6 @@ export default {
 		onSaveNote() {
 			switch (this.noteType || this.noteToEdit.type) {
 				case 'noteTxt':
-					if (!this.noteInfo) {
-						alert('Not a valid note')
-						break
-					}
 					this.$emit('saveNote', {
 						id: this.id,
 						type: this.noteType || this.noteToEdit.type,
@@ -36,10 +35,6 @@ export default {
 					})
 					break
 				case 'noteTodos':
-					if (!this.noteInfo) {
-						alert('Not a valid list')
-						break
-					}
 					let todos = this.noteInfo.split(',')
 					todos = todos.map(todo => {
 						return { task: todo, isDone: false }
@@ -51,10 +46,6 @@ export default {
 					})
 					break
 				case 'noteImg':
-					if (!this.noteInfo) {
-						alert('Not a valid image link')
-						break
-					}
 					this.$emit('saveNote', {
 						id: this.id,
 						type: this.noteType || this.noteToEdit.type,
@@ -99,7 +90,11 @@ export default {
 			this.noteInfo =
 				this.noteToEdit.info.txt ||
 				this.noteToEdit.info.src ||
-				this.noteToEdit.info.todos.join(',')
+				this.noteToEdit.info.todos
+					.map(todo => {
+						return todo.task
+					})
+					.join(',')
 		}
 	},
 }

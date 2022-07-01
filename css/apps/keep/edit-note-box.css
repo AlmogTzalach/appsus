@@ -7,6 +7,15 @@
     box-shadow: 3px 3px 6px 0px rgb(229, 231, 229), -3px -3px 6px 0px rgb(229, 231, 229);
 }
 
+.note-edit-btns >* {
+    font-size: 1em;
+    padding: 0.5em;
+    background-color: transparent;
+    border: none;
+    color: var(--icon-grey);
+    cursor: pointer;
+}
+
 .edit-note-box input.title-input {
     border: none;
     outline: none;
