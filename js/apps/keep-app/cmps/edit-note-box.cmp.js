@@ -2,7 +2,7 @@ export default {
 	template: `
         <section class="edit-note-box">
 			<form @submit.prevent="onSaveNote">
-				<input v-model="this.title" type="text" placeholder="Title" class="title-input">
+				<input v-model="this.title" type="text" placeholder="Title" class="title-input" autofocus>
 				<hr>
 				<textarea v-model="this.noteInfo" :placeholder="noteTypePlaceholder" cols="30" rows="10" class="note-input" required></textarea>
 				<div class="note-edit-btns flex space-between">
