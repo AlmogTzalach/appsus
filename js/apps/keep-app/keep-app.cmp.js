@@ -162,16 +162,23 @@ export default {
 	watch: {
 		'$route.query': {
 			handler(query) {
-				const note = {
-					isPinned: false,
-					bgClr: 'white',
-					type: 'noteTxt',
-					info: { title: '', txt: '' },
+				if (!query.title || !query.txt) return
+				else {
+					keepService.query().then(notes => {
+						if (notes.some(note => note.info?.txt === query.txt)) return
+						else {
+							const note = {
+								isPinned: false,
+								bgClr: 'white',
+								type: 'noteTxt',
+								info: { title: '', txt: '' },
+							}
+							if (query.title) note.info.title = query.title
+							if (query.txt) note.info.txt = query.txt
+							this.saveNote(note)
+						}
+					})
 				}
-				if (!query) return
-				if (query.title) note.info.title = query.title
-				if (query.txt) note.info.txt = query.txt
-				this.saveNote(note)
 			},
 			immediate: true,
 		},
