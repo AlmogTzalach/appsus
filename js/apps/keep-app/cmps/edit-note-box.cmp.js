@@ -19,6 +19,7 @@ export default {
 			title: null,
 			noteInfo: null,
 			id: null,
+			isPinned: false,
 		}
 	},
 	methods: {
@@ -30,6 +31,7 @@ export default {
 				case 'noteTxt':
 					this.$emit('saveNote', {
 						id: this.id,
+						isPinned: this.isPinned,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, txt: this.noteInfo },
 					})
@@ -41,6 +43,7 @@ export default {
 					})
 					this.$emit('saveNote', {
 						id: this.id,
+						isPinned: this.isPinned,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, todos },
 					})
@@ -48,6 +51,7 @@ export default {
 				case 'noteImg':
 					this.$emit('saveNote', {
 						id: this.id,
+						isPinned: this.isPinned,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, src: this.noteInfo },
 					})
@@ -61,6 +65,7 @@ export default {
 					link = link.replace('watch?v=', 'embed/')
 					this.$emit('saveNote', {
 						id: this.id,
+						isPinned: this.isPinned,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, src: link },
 					})
@@ -87,6 +92,7 @@ export default {
 		if (this.noteToEdit) {
 			this.title = this.noteToEdit.info.title
 			this.id = this.noteToEdit.id
+			this.isPinned = this.noteToEdit.isPinned
 			this.noteInfo =
 				this.noteToEdit.info.txt ||
 				this.noteToEdit.info.src ||

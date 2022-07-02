@@ -6,10 +6,10 @@ import colorPicker from './color-picker.cmp.js'
 
 export default {
 	template: `
-        <section class="note-container flex column space-between" :style="noteBgClr">
+        <section class="note-container flex column space-between" :style="noteBgClr" >
                 <component :is="note.type" :info="note.info" @updateInfo="onUpdateInfo" class="note-content"></component>
                     <ul class="action-btns clean-list flex space-around">
-                        <li class="fa-solid fa-thumbtack"></li>
+                        <li class="fa-solid fa-thumbtack" :style="isPinned" @click="onPinNote"></li>
                         <li class="fa-solid fa-palette" @click="openColorModal">
 							<color-picker v-if="isChooseClr" :noteId="this.note.id" @colorNote="onColorNote" @closeModal="closeColorModal"></color-picker>
 						</li>
@@ -33,6 +33,9 @@ export default {
 		closeColorModal() {
 			this.isChooseClr = false
 		},
+		onPinNote() {
+			this.$emit('pinNote', this.note.id)
+		},
 		onEditNote() {
 			this.$emit('editNote', this.note)
 		},
@@ -49,6 +52,9 @@ export default {
 	computed: {
 		noteBgClr() {
 			return { backgroundColor: this.note.bgClr ? this.note.bgClr : 'white' }
+		},
+		isPinned() {
+			return { color: this.note.isPinned ? '#fbbc04' : 'black' }
 		},
 	},
 	created() {},

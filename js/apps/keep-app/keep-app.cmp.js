@@ -1,15 +1,17 @@
 import { keepService } from '../../services/keep-service.js'
 import notePreview from './cmps/note-preview.cmp.js'
 import addNoteBar from './cmps/add-note-bar.cmp.js'
+import searchBar from './cmps/search-bar.cmp.js'
 
 export default {
 	template: `
 		<section class="flex column align-center">
 			<section class="keep-main-layout flex column align-center">
+				<search-bar @filtered="setFilter"></search-bar>
 				<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
 				<ul class="notes-list-container clean-list">
-					<li v-for="(note, idx) in notes" :key="note.id">
-						<note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
+					<li v-for="(note, idx) in notesForDisplay" :key="note.id">
+						<note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
 					</li>
 				</ul>
 			</section>
@@ -19,12 +21,25 @@ export default {
 		return {
 			notes: null,
 			noteToEdit: null,
+			filterBy: null,
 		}
 	},
-	components: { notePreview, addNoteBar },
+	components: { notePreview, addNoteBar, searchBar },
 	methods: {
+		setFilter(filterBy) {
+			this.filterBy = filterBy
+		},
 		closeEditBox() {
 			this.noteToEdit = null
+		},
+		pinNote(id) {
+			const note = this.notes.find(note => note.id === id)
+			const idx = this.notes.findIndex(note => note.id === id)
+			note.isPinned = !note.isPinned
+			this.notes.splice(idx, 1)
+			if (note.isPinned) this.notes.unshift(note)
+			else this.notes.push(note)
+			keepService.update(note).then(note => console.log(note))
 		},
 		editNote(note) {
 			this.noteToEdit = note
@@ -60,8 +75,33 @@ export default {
 			keepService.update(note).then(note => console.log(note))
 		},
 	},
-	computed: {},
+	computed: {
+		notesForDisplay() {
+			let notes = this.notes
+			if (this.filterBy?.searchWord) {
+				const regex = new RegExp(this.filterBy.searchWord, 'i')
+				notes = notes.filter(note => regex.test(note.info.title))
+			}
+			if (this.filterBy?.noteType) {
+				notes = notes.filter(note => note.type === this.filterBy.noteType)
+			}
+			return notes
+		},
+	},
 	created() {
-		keepService.query().then(notes => (this.notes = notes))
+		keepService.query().then(notes => {
+			const pinnedNotes = notes.filter(note => {
+				if (note.isPinned) return note
+				else return
+			})
+			const unpinnedNotes = notes.filter(note => {
+				if (!note.isPinned) return note
+				else return
+			})
+			let allNotes = []
+			if (pinnedNotes.length) allNotes.push(...pinnedNotes)
+			if (unpinnedNotes.length) allNotes.push(...unpinnedNotes)
+			this.notes = allNotes
+		})
 	},
 }

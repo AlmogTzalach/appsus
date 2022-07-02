@@ -39,21 +39,25 @@ function _createNotes() {
 		notes = [
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: { title: '', txt: 'Password: 12345678' },
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: { title: 'Important!', txt: "Don't forget to s" },
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: { title: '', txt: 'I parked at: Jabotinsky 18' },
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTodos',
 				info: {
 					title: 'TODO List',
@@ -75,6 +79,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteImg',
 				info: {
 					title: 'What a Vue',
@@ -83,6 +88,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteVideo',
 				info: {
 					title: 'Vue.js Explained in 100 Seconds',
@@ -91,11 +97,13 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: { title: '', txt: 'New Password: 123456789' },
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTodos',
 				info: {
 					title: 'TODO List',
@@ -117,6 +125,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteVideo',
 				info: {
 					title: 'Top 10 Top 10 Lists',
@@ -125,6 +134,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteImg',
 				info: {
 					title: 'Family Forever 💖',
@@ -133,6 +143,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: {
 					title: 'NEVER USE SEMICOLONS!',
@@ -141,6 +152,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTodos',
 				info: {
 					title: 'TODO List',
@@ -166,6 +178,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: {
 					title: 'Call grandma!',
@@ -174,6 +187,7 @@ function _createNotes() {
 			},
 			{
 				id: utilService.makeId(),
+				isPinned: false,
 				type: 'noteTxt',
 				info: {
 					title: 'Note to self',

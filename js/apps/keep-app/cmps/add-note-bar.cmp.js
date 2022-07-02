@@ -39,7 +39,6 @@ export default {
 	computed: {
 		isEditOrAdd() {
 			if (this.noteToEdit || this.noteType) return true
-			// return { true: this.noteToEdit || this.noteType }
 		},
 	},
 	created() {},
