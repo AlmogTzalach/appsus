@@ -3,7 +3,7 @@
 }
 
 .color-choose-modal {
-    transform: translateX(-20%);
+    transform: translate(-30%,-250%);
     z-index: 100;
     position:fixed;
     padding: 0.3em;
