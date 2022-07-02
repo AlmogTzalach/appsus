@@ -30,3 +30,8 @@
     resize: none;
     width: 100%;
 }
+
+.edit-note-box hr {
+    background-color: var(--icon-grey);
+    border: 0.5px solid var(--icon-grey);
+}

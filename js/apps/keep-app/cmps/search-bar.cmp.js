@@ -26,7 +26,9 @@ export default {
 	components: {},
 	methods: {
 		changeNoteFilter(noteType) {
-			this.filterBy.noteType = noteType
+			if (this.filterBy.noteType !== noteType)
+				this.filterBy.noteType = noteType
+			else this.filterBy.noteType = null
 			this.setFilter()
 		},
 		setFilter() {
@@ -36,7 +38,7 @@ export default {
 	computed: {
 		isNote() {
 			return {
-				color: this.filterBy.noteType === 'noteTxt' ? 'grey' : 'black',
+				color: this.filterBy.noteType === 'noteTxt' ? '#2f934a' : 'black',
 			}
 		},
 		isList() {

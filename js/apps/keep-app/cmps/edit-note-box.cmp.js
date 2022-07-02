@@ -7,22 +7,33 @@ export default {
 				<textarea v-model="this.noteInfo" :placeholder="noteTypePlaceholder" cols="30" rows="10" class="note-input" required></textarea>
 				<div class="note-edit-btns flex space-between">
 					<input type="button" @click="onDiscardNote" value="Discard">
-					<!-- <button @click="onSaveNote">Save</button> -->
 					<input type="submit" value="Save">
 				</div>
 			</form>
+			<div class="note-type-select">
+				<ul class="note-types clean-list flex space-around">
+					<li :style="isNote" class="fa-solid fa-comment" @click="changeNoteType('noteTxt')"></li>
+					<li :style="isList" class="fa-solid fa-list" @click="changeNoteType('noteTodos')"></li>
+					<li :style="isImg" class="fa-solid fa-image" @click="changeNoteType('noteImg')"></li>
+					<li :style="isVideo" class="fa-brands fa-youtube" @click="changeNoteType('noteVideo')"></li>
+				</ul>
+            </div>
         </section>
     `,
 	props: ['noteType', 'noteToEdit'],
 	data() {
 		return {
 			title: null,
-			noteInfo: null,
 			id: null,
 			isPinned: false,
+			bgClr: 'white',
+			noteInfo: null,
 		}
 	},
 	methods: {
+		changeNoteType(noteType) {
+			this.$emit('changeNoteType', noteType)
+		},
 		onDiscardNote() {
 			this.$emit('closeEditBox')
 		},
@@ -32,6 +43,7 @@ export default {
 					this.$emit('saveNote', {
 						id: this.id,
 						isPinned: this.isPinned,
+						bgClr: this.bgClr,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, txt: this.noteInfo },
 					})
@@ -44,6 +56,7 @@ export default {
 					this.$emit('saveNote', {
 						id: this.id,
 						isPinned: this.isPinned,
+						bgClr: this.bgClr,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, todos },
 					})
@@ -52,6 +65,7 @@ export default {
 					this.$emit('saveNote', {
 						id: this.id,
 						isPinned: this.isPinned,
+						bgClr: this.bgClr,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, src: this.noteInfo },
 					})
@@ -66,6 +80,7 @@ export default {
 					this.$emit('saveNote', {
 						id: this.id,
 						isPinned: this.isPinned,
+						bgClr: this.bgClr,
 						type: this.noteType || this.noteToEdit.type,
 						info: { title: this.title, src: link },
 					})
@@ -87,12 +102,49 @@ export default {
 					return 'Enter a Youtube URL'
 			}
 		},
+		isNote() {
+			return {
+				color:
+					this.noteType === 'noteTxt' ||
+					this.noteToEdit?.type === 'noteTxt'
+						? '#2f934a'
+						: 'black',
+			}
+		},
+		isList() {
+			return {
+				color:
+					this.noteType === 'noteTodos' ||
+					this.noteToEdit?.type === 'noteTodos'
+						? 'orange'
+						: 'black',
+			}
+		},
+		isImg() {
+			return {
+				color:
+					this.noteType === 'noteImg' ||
+					this.noteToEdit?.type === 'noteImg'
+						? 'blue'
+						: 'black',
+			}
+		},
+		isVideo() {
+			return {
+				color:
+					this.noteType === 'noteVideo' ||
+					this.noteToEdit?.type === 'noteVideo'
+						? '#d93025'
+						: 'black',
+			}
+		},
 	},
 	created() {
 		if (this.noteToEdit) {
 			this.title = this.noteToEdit.info.title
 			this.id = this.noteToEdit.id
 			this.isPinned = this.noteToEdit.isPinned
+			this.bgClr = this.noteToEdit.bgClr
 			this.noteInfo =
 				this.noteToEdit.info.txt ||
 				this.noteToEdit.info.src ||

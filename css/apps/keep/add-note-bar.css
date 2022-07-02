@@ -9,6 +9,7 @@
     margin-bottom: 1em;
     border-radius: 10px;
     box-shadow: 3px 3px 6px 0px rgb(229, 231, 229), -3px -3px 6px 0px rgb(229, 231, 229);
+    cursor: pointer;
 }
 
 .note-types li {
@@ -19,4 +20,8 @@
 .note-types .fa-youtube {
     font-size: 1.2rem;
     padding-top: 0.15em;
+}
+
+.add-note-bar span {
+    margin-inline-start: 0.5em;
 }

@@ -11,7 +11,7 @@ export default {
 				<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
 				<ul class="notes-list-container clean-list">
 					<li v-for="(note, idx) in notesForDisplay" :key="note.id">
-						<note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
+						<note-preview :note="note" @colorNote="changeNoteClr" @copyNote="copyNote" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
 					</li>
 				</ul>
 			</section>
@@ -31,6 +31,13 @@ export default {
 		},
 		closeEditBox() {
 			this.noteToEdit = null
+		},
+		copyNote(id) {
+			const note = this.notes.find(note => note.id === id)
+			const idx = this.notes.findIndex(note => note.id === id)
+			keepService
+				.save(note)
+				.then(copiedNote => this.notes.splice(idx, 0, copiedNote))
 		},
 		pinNote(id) {
 			const note = this.notes.find(note => note.id === id)
@@ -78,12 +85,19 @@ export default {
 	computed: {
 		notesForDisplay() {
 			let notes = this.notes
-			if (this.filterBy?.searchWord) {
-				const regex = new RegExp(this.filterBy.searchWord, 'i')
-				notes = notes.filter(note => regex.test(note.info.title))
-			}
 			if (this.filterBy?.noteType) {
 				notes = notes.filter(note => note.type === this.filterBy.noteType)
+			}
+
+			if (this.filterBy?.searchWord) {
+				const regex = new RegExp(this.filterBy.searchWord, 'i')
+				notes = notes.filter(note => {
+					if (regex.test(note.info.title)) return true
+					if (note.info.txt && regex.test(note.info.txt)) return true
+					if (note.info.todos) {
+						return note.info.todos.some(todo => regex.test(todo.task))
+					}
+				})
 			}
 			return notes
 		},
