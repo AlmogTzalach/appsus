@@ -9,7 +9,7 @@ export default {
 
             <form @submit.prevent="onSend" class="compose-form flex column">
                 <input type="text" placeholder="Subject" class="compose-subject" v-model="subject" />
-                <input type="text" placeholder="To" class="compose-to" required v-model="to" />
+                <input type="email" placeholder="To" class="compose-to" required v-model="to" />
                 <textarea type="text" placeholder="Mail content" rows="15" class="compose-text" v-model="body" />
                 <input type="submit" value="Send" class="compose-send" />
             </form>

@@ -5,11 +5,11 @@ export default {
         <section v-if="mail" class="mail-details flex column">
 			<div class="mail-actions">
 				<button @click="onBack" title="Back"><span class="fa-solid fa-arrow-left"></span></button>
-				<button @click="onStar">
+				<button @click="onStar" :title="starTitle">
 					<span class="star-icon fa-star" :class="starType"></span> 
 				</button>
 				<button @click="onMark" title="Mark as unread"><span class="fa-solid fa-envelope-open-text"></span></button>
-				<button @click="onDelete" title="delete"><span class="fa-solid fa-trash"></span></button>
+				<button @click="onDelete" title="Delete"><span class="fa-solid fa-trash"></span></button>
 
 			</div>
 
@@ -51,6 +51,9 @@ export default {
 	computed: {
 		starType() {
 			return this.mail.isStarred ? 'fa-solid' : 'fa-regular'
+		},
+		starTitle() {
+			return this.mail.isStarred ? 'Unstar' : 'Star'
 		},
 	},
 

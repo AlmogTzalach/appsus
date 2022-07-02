@@ -7,6 +7,10 @@ export default {
                     v-model="searchTxt"
                     @input="onInput"
                 />
+			
+				<div class="filter-dropdown">
+					 <span> {{ dropHeader }} </span>
+				</div>
         </section>
     `,
 
@@ -15,12 +19,24 @@ export default {
 	data() {
 		return {
 			searchTxt: '',
+			filterBy: 'date-new',
 		}
 	},
 
 	methods: {
 		onInput() {
 			this.$emit('searched', this.searchTxt)
+		},
+	},
+
+	computed: {
+		dropHeader() {
+			let header = 'Sort by: '
+			if (this.filterBy === 'date-new') header += 'Date-new first'
+			else if (this.filterBy === 'date-new') header += 'Date-new first'
+			else if (this.filterBy === 'date-new') header += 'Date-new first'
+			else if (this.filterBy === 'date-new') header += 'Date-new first'
+			// return header
 		},
 	},
 
