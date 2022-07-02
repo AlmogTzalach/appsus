@@ -8,3 +8,6 @@
 @import url(./cmps/mail-details.css);
 @import url(./cmps/mail-compose.css);
 @import url(./cmps/mail-filter.css);
+
+/* media queries */
+@import url(./mq/mq.css);

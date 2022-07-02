@@ -1,0 +1,72 @@
+@media (max-width: 780px) {
+	.mail-container {
+		display: block;
+		position: relative;
+	}
+
+	.mail-hamburger.hamburger-shown {
+		position: absolute;
+		cursor: pointer;
+		top: 11px;
+		left: 45px;
+		height: 2.1em;
+		width: 2.1em;
+		padding-top: 5px;
+		text-align: center;
+		display: block;
+		font-size: 1em;
+		background-color: #e1dcdc;
+		border-radius: 50%;
+	}
+
+	.mail-screen.screen-open {
+		opacity: 0.6;
+		pointer-events: auto;
+	}
+
+	.mail-filter .search-input {
+		padding-inline-start: 4em;
+	}
+
+	.side-bar {
+		width: 16em;
+		position: fixed;
+		transform: translate(-100%, -2em);
+		padding-top: 2em;
+		z-index: 30;
+		height: 100%;
+		background-color: white;
+		border-inline-end: 1px solid var(--black);
+		transition: transform 0.6s;
+	}
+
+	.side-bar.side-open {
+		transform: translate(0, -2em);
+	}
+
+	.mail-preview {
+		grid-template-columns: 1fr 5em;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas:
+			'address date'
+			'content star';
+		row-gap: 0.5em;
+	}
+
+	.mail-preview .address {
+		font-size: 1.2em;
+	}
+
+	.mail-preview .star-icon-container {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.mail-compose {
+		margin-inline-start: 1em;
+	}
+
+	.mail-details {
+		margin-inline: 2em;
+	}
+}

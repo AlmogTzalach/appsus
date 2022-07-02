@@ -1,9 +1,28 @@
 .mail-preview {
 	position: relative;
 	grid-template-columns: 2.4em 14em 1fr 6em;
+	grid-template-areas: 'star address content date';
 	padding: 0.5em 0.3em 0.5em 0;
 	color: var(--black);
 }
+
+/* grid template areas*/
+.mail-preview .star-icon-container {
+	grid-area: star;
+}
+
+.mail-preview .address {
+	grid-area: address;
+}
+
+.mail-preview .mail-txt {
+	grid-area: content;
+}
+
+.mail-preview .date {
+	grid-area: date;
+}
+/* end  grid areas*/
 
 .mail-preview:hover {
 	box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, 0.3),

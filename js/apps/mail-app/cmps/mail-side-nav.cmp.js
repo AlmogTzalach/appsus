@@ -1,6 +1,6 @@
 export default {
 	template: `
-        <section class="side-bar flex">
+        <section class="side-bar flex" :class="sidbarClass">
             <button class="compose-btn" @click="onCompose"><span class="fa-solid fa-pencil"></span> Compose</button>
             <div><router-link to="/mail/inbox"><span class="fa-solid fa-inbox" /> {{ inboxText }}</router-link></div>
             <div><router-link to="/mail/starred"><span class="fa-solid fa-star" />Starred</router-link></div>
@@ -10,7 +10,7 @@ export default {
         </section>
     `,
 
-	props: ['unreadCount'],
+	props: ['unreadCount', 'isShown'],
 
 	methods: {
 		onCompose() {
@@ -22,6 +22,9 @@ export default {
 			let txt = 'Inbox'
 			if (this.unreadCount) txt += ` (${this.unreadCount})`
 			return txt
+		},
+		sidbarClass() {
+			return this.isShown ? 'side-open' : ''
 		},
 	},
 

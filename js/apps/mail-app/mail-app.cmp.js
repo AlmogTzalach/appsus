@@ -1,11 +1,17 @@
 import { mailService } from './services/mail.service.js'
 import mailList from './cmps/mail-list.js'
 import mailSideNav from './cmps/mail-side-nav.cmp.js'
+import mailHamburger from './cmps/mail-hamburger.cmp.js'
+import mailScreen from './cmps/mail-screen.cmp.js'
 
 export default {
 	template: `
         <section class="mail-container grid">
-            <mail-side-nav :unreadCount="unreadMailsCount" />
+			<mail-hamburger @click="onHamburger" />
+			<mail-screen :isShown="isSidebarShown" @click="closeSide" />
+
+            <mail-side-nav :unreadCount="unreadMailsCount" :isShown="isSidebarShown"/>
+			
 			<router-view 
 				:mails="mails"	
 				@starred="toggleStar"
@@ -13,6 +19,7 @@ export default {
 				@deleted="deleteMail"
 				@opened="toggleMark"
 				@mailSent="onMailSent"
+				@closeSide="closeSide"
 			/>
         </section>
     `,
@@ -20,10 +27,17 @@ export default {
 	data() {
 		return {
 			mails: null,
+			isSidebarShown: false,
 		}
 	},
 
 	methods: {
+		onHamburger() {
+			this.isSidebarShown = !this.isSidebarShown
+		},
+		closeSide() {
+			this.isSidebarShown = false
+		},
 		toggleStar(id) {
 			let mail = this.getMail(id)
 			mail.isStarred = !mail.isStarred
@@ -72,7 +86,9 @@ export default {
 	},
 
 	components: {
+		mailHamburger,
 		mailList,
 		mailSideNav,
+		mailScreen,
 	},
 }

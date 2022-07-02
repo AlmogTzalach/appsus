@@ -5,7 +5,12 @@ import mailFilter from './mail-filter.cmp.js'
 export default {
 	template: `
         <section>
-			<mail-filter @searched="onSearch" :status="$route.params.status"/>
+			<mail-filter 
+				@searched="onSearch"
+				@sorted="onSort"
+				:status="$route.params.status"
+			/>
+
             <ul v-if="areMailsShown" class="mail-list clean-list">
                 <li v-for="mail in mailsToShow" :key="mail.id">
                     <mail-preview :mail="mail"
@@ -45,6 +50,16 @@ export default {
 			const status = this.$route.params.status
 			mailService.query(status, searchTxt).then((mails) => (this.mailsToShow = mails))
 		},
+		onSort(sortBy) {
+			this.mailsToShow = this.mailsToShow.sort((m1, m2) => {
+				const d1 = new Date(m1.created)
+				const d2 = new Date(m2.created)
+				if (sortBy === 'date-new') return d2 - d1
+				else if (sortBy === 'date-old') return d1 - d2
+				else if (sortBy === 'subject-normal') return m1.subject.localeCompare(m2.subject)
+				else if (sortBy === 'subject-reverse') return m2.subject.localeCompare(m1.subject)
+			})
+		},
 	},
 	computed: {
 		areMailsShown() {
@@ -61,6 +76,7 @@ export default {
 		'$route.params.status': {
 			handler(status) {
 				mailService.query(status).then((mails) => (this.mailsToShow = mails))
+				this.$emit('closeSide')
 			},
 			immediate: true,
 		},

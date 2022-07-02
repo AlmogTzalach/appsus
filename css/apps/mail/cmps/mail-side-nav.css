@@ -5,6 +5,7 @@
 .side-bar .compose-btn {
 	align-self: center;
 	font-size: 1em;
+	font-family: open-sans-bold;
 	padding: 1em;
 	border-radius: 1.6em;
 	border: 1px solid var(--black);
