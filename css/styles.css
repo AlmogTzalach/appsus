@@ -11,6 +11,9 @@
 @import url(./cmps/app-header.css);
 @import url(./cmps/home-page.css);
 
+/* Books app */
+@import url(./apps/books/book-app.css);
+
 /* Mail app */
 @import url(./apps/mail/mail-app.css);
 

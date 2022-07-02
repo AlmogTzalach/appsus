@@ -1,0 +1,39 @@
+.book-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+	margin: 0;
+	padding: 1em;
+	gap: 1em;
+	text-align: center;
+	list-style: none;
+	color: #232a3f;
+}
+
+.book-grid > * {
+	padding: 1em;
+	border-radius: 6px;
+}
+
+.book-grid > *:hover {
+	cursor: pointer;
+}
+
+.book-grid img {
+	border-radius: 6px;
+}
+
+.book-grid > *:nth-child(even) {
+	background-color: #a4a0a0;
+}
+
+.book-grid > *:nth-child(odd) {
+	background-color: #8aade5;
+}
+
+.book-grid > *:nth-child(even):hover {
+	background-color: #8a8585;
+}
+
+.book-grid > *:nth-child(odd):hover {
+	background-color: #6f92cb;
+}

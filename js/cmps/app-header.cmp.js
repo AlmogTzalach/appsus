@@ -10,7 +10,7 @@ export default {
 			<nav class="nav-bar flex align-center">
 				<router-link to="/keep"><span class="fa-solid fa-file" title="Notes"></span></router-link>
 				<router-link to="/mail/inbox"><span class="fa-solid fa-envelope" title="Mail"></span></router-link>
-				<router-link to="/mail/inbox"><span class="fa-solid fa-book" title="Books"></span></router-link>
+				<router-link to="/books"><span class="fa-solid fa-book" title="Books"></span></router-link>
 			</nav>
 		</header>
 	`,

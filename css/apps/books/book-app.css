@@ -1,0 +1,11 @@
+/* components */
+@import url(./cmps/book-details.css);
+@import url(./cmps/book-filter.css);
+@import url(./cmps/book-grid.css);
+
+/* media queries */
+@media (max-width: 700px) {
+	.book-details-container {
+		grid-template-columns: 1fr;
+	}
+}

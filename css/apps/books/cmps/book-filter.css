@@ -1,0 +1,17 @@
+.filter-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 2em;
+	gap: 2em;
+}
+
+.filter-container input {
+	font-size: 1em;
+	padding: 0.4em;
+}
+
+.filter-container input[type='number'] {
+	width: 3.5em;
+	text-align: center;
+}

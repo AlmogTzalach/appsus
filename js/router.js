@@ -4,6 +4,8 @@ import mailApp from './apps/mail-app/mail-app.cmp.js'
 import mailList from './apps/mail-app/cmps/mail-list.js'
 import mailDetails from './apps/mail-app/cmps/mail-details.cmp.js'
 import mailCompose from './apps/mail-app/cmps/mail-compose.cmp.js'
+import bookApp from './apps/book-app/book-app.cmp.js'
+import bookDetails from './apps/book-app/cmps/book-details.cmp.js'
 
 const routes = [
 	{
@@ -31,6 +33,14 @@ const routes = [
 				component: mailCompose,
 			},
 		],
+	},
+	{
+		path: '/books',
+		component: bookApp,
+	},
+	{
+		path: '/books/:bookId',
+		component: bookDetails,
 	},
 ]
 
