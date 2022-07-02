@@ -1,4 +1,5 @@
 import { mailService } from './services/mail.service.js'
+import { eventBus } from '../../services/eventBus-service.js'
 import mailList from './cmps/mail-list.js'
 import mailSideNav from './cmps/mail-side-nav.cmp.js'
 import mailHamburger from './cmps/mail-hamburger.cmp.js'
@@ -62,9 +63,17 @@ export default {
 				const idx = this.mails.findIndex((mail) => mail.id === id)
 				this.mails.splice(idx, 1)
 				mailService.remove(id)
+				eventBus.emit('show-msg', {
+					txt: 'Mail deleted',
+					type: 'success',
+				})
 			} else {
 				mail.isTrashed = true
 				mailService.update(mail)
+				eventBus.emit('show-msg', {
+					txt: 'Mail moved to trash',
+					type: 'success',
+				})
 			}
 		},
 		onMailSent(mail) {

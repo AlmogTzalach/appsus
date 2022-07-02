@@ -10,6 +10,7 @@ export default {
 					<span class="star-icon fa-star" :class="starType"></span> 
 				</button>
 				<button @click="onMark" title="Mark as unread"><span class="fa-solid fa-envelope-open-text"></span></button>
+				<button @click="onSendToNotes" title="Save as note"><span class="fa-solid fa-file"></span></button>
 				<button @click="onDelete" title="Delete"><span class="fa-solid fa-trash"></span></button>
 
 			</div>
@@ -48,13 +49,12 @@ export default {
 			// return to mail after marking mail as unread
 			this.onBack()
 		},
+		onSendToNotes() {
+			this.$router.push(`/keep?title=${this.mail.subject || ''}&txt=${this.mail.body || ''}`)
+		},
 		onDelete() {
 			this.$emit('deleted', this.mail.id)
 			this.onBack()
-			eventBus.emit('show-msg', {
-				txt: 'Mail deleted',
-				type: 'success',
-			})
 		},
 	},
 	computed: {
