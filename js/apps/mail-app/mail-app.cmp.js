@@ -57,10 +57,15 @@ export default {
 			})
 		},
 		deleteMail(id) {
-			const idx = this.mails.findIndex((mail) => mail.id === id)
-			this.mails.splice(idx, 1)
-
-			mailService.remove(id)
+			const mail = this.getMail(id)
+			if (mail.isTrashed) {
+				const idx = this.mails.findIndex((mail) => mail.id === id)
+				this.mails.splice(idx, 1)
+				mailService.remove(id)
+			} else {
+				mail.isTrashed = true
+				mailService.update(mail)
+			}
 		},
 		onMailSent(mail) {
 			this.mails.unshift(mail)

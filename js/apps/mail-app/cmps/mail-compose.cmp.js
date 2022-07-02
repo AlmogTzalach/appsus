@@ -41,7 +41,14 @@ export default {
 		},
 	},
 
-	computed: {},
-	created() {},
-	unmounted() {},
+	watch: {
+		'$route.query': {
+			handler(query) {
+				if (!query) return
+				if (query.title) this.subject = query.title
+				if (query.txt) this.body = query.txt
+			},
+			immediate: true,
+		},
+	},
 }

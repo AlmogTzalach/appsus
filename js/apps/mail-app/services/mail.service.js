@@ -20,16 +20,21 @@ function query(status, txt = '') {
 	return storageService.query(MAIL_KEY).then((mails) => {
 		if (status === 'all') {
 			return mails
-		} else if (status === 'inbox') {
-			mails = mails.filter((mail) => mail.to === USER)
-		} else if (status === 'starred') {
-			mails = mails.filter((mail) => mail.isStarred)
-		} else if (status === 'sent') {
-			mails = mails.filter((mail) => mail.from === USER)
-		} else if (status === 'drafts') {
-			mails = mails.filter((mail) => mail.isDraft)
-		} else if (status === 'trash') {
+		}
+
+		if (status === 'trash') {
 			mails = mails.filter((mail) => mail.isTrashed)
+		} else {
+			mails = mails.filter((mail) => !mail.isTrashed)
+			if (status === 'inbox') {
+				mails = mails.filter((mail) => mail.to === USER)
+			} else if (status === 'starred') {
+				mails = mails.filter((mail) => mail.isStarred)
+			} else if (status === 'sent') {
+				mails = mails.filter((mail) => mail.from === USER)
+			} else if (status === 'drafts') {
+				mails = mails.filter((mail) => mail.isDraft)
+			}
 		}
 
 		mails = mails.filter((mail) => {
@@ -82,6 +87,7 @@ function _createMail(subject, body, from, to) {
 		created: new Date(),
 		isRead: false,
 		isStarred: false,
+		isTrashed: false,
 	}
 }
 
