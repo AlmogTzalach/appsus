@@ -10,13 +10,13 @@ export default {
                 <component :is="note.type" :info="note.info" @updateInfo="onUpdateInfo" class="note-content"></component>
                     <ul class="action-btns clean-list flex space-around">
                         <li :title="pinnedTitle" class="fa-solid fa-thumbtack" :style="isPinned" @click="onPinNote"></li>
-                        <li title="Change Note's Color"  class="fa-solid fa-palette" @click="openColorModal">
+                        <li title="Change note's color"  class="fa-solid fa-palette" @click="openColorModal">
 							<color-picker v-if="isChooseClr" :noteId="this.note.id" @colorNote="onColorNote" @closeModal="closeColorModal"></color-picker>
 						</li>
-                        <li title="Send As Mail" class="fa-solid fa-envelope" @click="onSendToMail"></li>
-						<li title="Copy Note" class="fa-solid fa-copy" @click="onCopyNote"></li>
-                        <li title="Edit Note" class="fa-solid fa-pen-to-square" @click="onEditNote"></li>
-                        <li title="Delete Note" class="fa-solid fa-trash-can" @click="onRemoveNote"></li>
+                        <li title="Send as mail" class="fa-solid fa-envelope" @click="onSendToMail"></li>
+						<li title="Copy note" class="fa-solid fa-copy" @click="onCopyNote"></li>
+                        <li title="Edit note" class="fa-solid fa-pen-to-square" @click="onEditNote"></li>
+                        <li title="Delete note" class="fa-solid fa-trash-can" @click="onRemoveNote"></li>
                     </ul>
         </section>
     `,
@@ -64,7 +64,7 @@ export default {
 			return { color: this.note.isPinned ? '#fbbc04' : 'black' }
 		},
 		pinnedTitle() {
-			return this.note.isPinned ? 'Unpin Note' : 'Pin Note'
+			return this.note.isPinned ? 'Unpin note' : 'Pin note'
 		},
 	},
 	created() {},

@@ -10,7 +10,7 @@ export default {
             <div class="green" title="Green" @click.stop="onColorNote('rgb(205, 255, 145)')"></div>
             <div class="teal" title="Teal" @click.stop="onColorNote('rgb(167, 254, 235)')"></div>
             <div class="blue" title="Blue" @click.stop="onColorNote('rgb(203, 240, 248)')"></div>
-            <div class="dark-blue" title="Dark Blue" @click.stop="onColorNote('rgb(175, 203, 250)')"></div>
+            <div class="dark-blue" title="Dark blue" @click.stop="onColorNote('rgb(175, 203, 250)')"></div>
             <div class="purple" title="Purple" @click.stop="onColorNote('rgb(215, 174, 252)')"></div>
             <div class="pink" title="Pink" @click.stop="onColorNote('rgb(253, 207, 233)')"></div>
         </div>

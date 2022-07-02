@@ -15,7 +15,7 @@ export default {
 					<li title="Text" :style="isNote" class="fa-solid fa-comment" @click="changeNoteType('noteTxt')"></li>
 					<li title="List" :style="isList" class="fa-solid fa-list" @click="changeNoteType('noteTodos')"></li>
 					<li title="Image" :style="isImg" class="fa-solid fa-image" @click="changeNoteType('noteImg')"></li>
-					<li title="Youtube Video" :style="isVideo" class="fa-brands fa-youtube" @click="changeNoteType('noteVideo')"></li>
+					<li title="Youtube video" :style="isVideo" class="fa-brands fa-youtube" @click="changeNoteType('noteVideo')"></li>
 				</ul>
             </div>
         </section>
