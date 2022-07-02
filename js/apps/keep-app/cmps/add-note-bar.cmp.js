@@ -3,18 +3,10 @@ import editNoteBox from './edit-note-box.cmp.js'
 export default {
 	template: `
         <section class="add-note-container flex column align-center">
-            <div v-if="!isEditOrAdd" class="add-note-bar flex space-between">
-                <span @click="changeNoteType('noteTxt')">Take a note...</span>
-                <div class="note-type-select">
-                        <ul class="note-types clean-list flex space-around">
-                            <li class="fa-solid fa-comment" @click="changeNoteType('noteTxt')"></li>
-                            <li class="fa-solid fa-list" @click="changeNoteType('noteTodos')"></li>
-                            <li class="fa-solid fa-image" @click="changeNoteType('noteImg')"></li>
-                            <li class="fa-brands fa-youtube" @click="changeNoteType('noteVideo')"></li>
-                        </ul>
-                </div>
+            <div v-if="!isEditOrAdd" class="add-note-bar flex space-between" @click="changeNoteType('noteTxt')">
+                <span>Take a note...</span>
             </div>
-            <edit-note-box v-if="isEditOrAdd" :noteToEdit="this.noteToEdit" :noteType="this.noteType" @saveNote="onSaveNote" @closeEditBox="closeEditBox"></edit-note-box>
+            <edit-note-box v-if="isEditOrAdd" @changeNoteType="changeNoteType" :noteToEdit="this.noteToEdit" :noteType="this.noteType" @saveNote="onSaveNote" @closeEditBox="closeEditBox"></edit-note-box>
         </section>
     `,
 	components: { editNoteBox },

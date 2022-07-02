@@ -30,7 +30,8 @@ function update(note) {
 }
 
 function save(note) {
-	return storageService.post(NOTES_KEY, note)
+	const newNote = JSON.parse(JSON.stringify(note))
+	return storageService.post(NOTES_KEY, newNote)
 }
 
 function _createNotes() {
@@ -40,24 +41,28 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(203, 240, 248)',
 				type: 'noteTxt',
 				info: { title: '', txt: 'Password: 12345678' },
 			},
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(167, 254, 235)',
 				type: 'noteTxt',
 				info: { title: 'Important!', txt: "Don't forget to s" },
 			},
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(175, 203, 250)',
 				type: 'noteTxt',
 				info: { title: '', txt: 'I parked at: Jabotinsky 18' },
 			},
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'white',
 				type: 'noteTodos',
 				info: {
 					title: 'TODO List',
@@ -80,6 +85,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(205, 255, 145)',
 				type: 'noteImg',
 				info: {
 					title: 'What a Vue',
@@ -89,6 +95,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'white',
 				type: 'noteVideo',
 				info: {
 					title: 'Vue.js Explained in 100 Seconds',
@@ -98,12 +105,14 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(250, 189, 3)',
 				type: 'noteTxt',
 				info: { title: '', txt: 'New Password: 123456789' },
 			},
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'white',
 				type: 'noteTodos',
 				info: {
 					title: 'TODO List',
@@ -126,6 +135,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(242, 139, 130)',
 				type: 'noteVideo',
 				info: {
 					title: 'Top 10 Top 10 Lists',
@@ -135,6 +145,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(253, 207, 233)',
 				type: 'noteImg',
 				info: {
 					title: 'Family Forever 💖',
@@ -144,6 +155,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'white',
 				type: 'noteTxt',
 				info: {
 					title: 'NEVER USE SEMICOLONS!',
@@ -153,6 +165,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(255, 244, 118)',
 				type: 'noteTodos',
 				info: {
 					title: 'TODO List',
@@ -179,6 +192,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'rgb(215, 174, 252)',
 				type: 'noteTxt',
 				info: {
 					title: 'Call grandma!',
@@ -188,6 +202,7 @@ function _createNotes() {
 			{
 				id: utilService.makeId(),
 				isPinned: false,
+				bgClr: 'white',
 				type: 'noteTxt',
 				info: {
 					title: 'Note to self',

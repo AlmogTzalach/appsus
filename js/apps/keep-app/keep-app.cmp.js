@@ -11,7 +11,7 @@ export default {
 				<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
 				<ul class="notes-list-container clean-list">
 					<li v-for="(note, idx) in notesForDisplay" :key="note.id">
-						<note-preview :note="note" @colorNote="changeNoteClr" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
+						<note-preview :note="note" @colorNote="changeNoteClr" @copyNote="copyNote" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
 					</li>
 				</ul>
 			</section>
@@ -31,6 +31,13 @@ export default {
 		},
 		closeEditBox() {
 			this.noteToEdit = null
+		},
+		copyNote(id) {
+			const note = this.notes.find(note => note.id === id)
+			const idx = this.notes.findIndex(note => note.id === id)
+			keepService
+				.save(note)
+				.then(copiedNote => this.notes.splice(idx, 0, copiedNote))
 		},
 		pinNote(id) {
 			const note = this.notes.find(note => note.id === id)
