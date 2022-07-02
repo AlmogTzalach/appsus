@@ -46,7 +46,7 @@ export default {
 			handler(query) {
 				if (!query) return
 				if (query.title) this.subject = query.title
-				if (query.txt) this.body = query.txt
+				if (query.txt) this.body = query.txt.replaceAll('~', '\n')
 			},
 			immediate: true,
 		},
