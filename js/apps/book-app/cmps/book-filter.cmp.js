@@ -11,7 +11,7 @@ export default {
                 <input type="number" name="to-price" v-model="toPrice" @input="onFilterChange">
             </span>
 
-            <button @click="onReset">Reset</button>
+            <button @click="onReset" class="reset-btn">Reset</button>
         </div>`,
 
 	props: ['maxPrice'],
