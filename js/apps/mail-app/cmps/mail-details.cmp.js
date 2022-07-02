@@ -1,4 +1,5 @@
 import { mailService } from '../services/mail.service.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
 	template: `
@@ -40,12 +41,20 @@ export default {
 		},
 		onMark() {
 			this.$emit('marked', this.mail.id)
-			// return to mail list if user chose to mark the msg as unread
+			eventBus.emit('show-msg', {
+				txt: 'Marked as unread',
+				type: 'success',
+			})
+			// return to mail after marking mail as unread
 			this.onBack()
 		},
 		onDelete() {
 			this.$emit('deleted', this.mail.id)
 			this.onBack()
+			eventBus.emit('show-msg', {
+				txt: 'Mail deleted',
+				type: 'success',
+			})
 		},
 	},
 	computed: {

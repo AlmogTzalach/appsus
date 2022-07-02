@@ -1,4 +1,5 @@
 import { mailService } from '../services/mail.service.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
 	template: `
@@ -33,6 +34,10 @@ export default {
 			const mail = mailService.createMailToSend(subject, this.body, this.to)
 			this.$router.push('/mail/sent')
 			this.$emit('mailSent', mail)
+			eventBus.emit('show-msg', {
+				txt: 'Mail sent',
+				type: 'success',
+			})
 		},
 	},
 
