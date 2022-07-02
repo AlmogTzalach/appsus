@@ -10,6 +10,8 @@
 /* components */
 @import url(./cmps/app-header.css);
 @import url(./cmps/home-page.css);
+@import url(./cmps/user-msg.css);
+
 
 /* Mail app */
 @import url(./apps/mail/mail-app.css);

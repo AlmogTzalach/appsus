@@ -1,4 +1,5 @@
 import { keepService } from '../../services/keep-service.js'
+import { eventBus } from '../../services/eventBus-service.js'
 import notePreview from './cmps/note-preview.cmp.js'
 import addNoteBar from './cmps/add-note-bar.cmp.js'
 import searchBar from './cmps/search-bar.cmp.js'
@@ -46,7 +47,12 @@ export default {
 			this.notes.splice(idx, 1)
 			if (note.isPinned) this.notes.unshift(note)
 			else this.notes.push(note)
-			keepService.update(note).then(note => console.log(note))
+			keepService.update(note).then(note =>
+				eventBus.emit('show-msg', {
+					txt: `Note ${!note.isPinned ? 'unpinned' : 'pinned'}`,
+					type: 'success',
+				})
+			)
 		},
 		editNote(note) {
 			this.noteToEdit = note
@@ -55,12 +61,20 @@ export default {
 			if (!note.id) {
 				keepService.save(note).then(note => {
 					this.notes.unshift(note)
+					eventBus.emit('show-msg', {
+						txt: 'Note added',
+						type: 'success',
+					})
 				})
 			} else {
 				keepService.update(note).then(() => {
 					this.notes = null
 					keepService.query().then(notes => {
 						this.notes = notes
+						eventBus.emit('show-msg', {
+							txt: 'Note updated',
+							type: 'success',
+						})
 					})
 				})
 			}
@@ -69,17 +83,31 @@ export default {
 			keepService.remove(id).then(() => {
 				const idx = this.notes.findIndex(note => note.id === id)
 				this.notes.splice(idx, 1)
+				eventBus.emit('show-msg', {
+					txt: 'Note removed',
+					type: 'success',
+				})
 			})
 		},
 		changeNoteClr(id, color) {
 			const note = this.notes.find(note => note.id === id)
 			note.bgClr = color
-			keepService.update(note).then(note => console.log(note))
+			keepService.update(note).then(note =>
+				eventBus.emit('show-msg', {
+					txt: 'Note color changed',
+					type: 'success',
+				})
+			)
 		},
 		updateInfo(id, newInfo) {
 			const note = this.notes.find(note => note.id === id)
 			note.info = newInfo
-			keepService.update(note).then(note => console.log(note))
+			keepService.update(note).then(note =>
+				eventBus.emit('show-msg', {
+					txt: 'Note updated',
+					type: 'success',
+				})
+			)
 		},
 	},
 	computed: {
