@@ -14,3 +14,7 @@
 .action-btns li {
     cursor: pointer;
 }
+
+.note-container .yellow-tack {
+    color: var(--keep-yellow);
+}
