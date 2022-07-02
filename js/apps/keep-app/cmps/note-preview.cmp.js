@@ -13,7 +13,7 @@ export default {
                         <li class="fa-solid fa-palette" @click="openColorModal">
 							<color-picker v-if="isChooseClr" :noteId="this.note.id" @colorNote="onColorNote" @closeModal="closeColorModal"></color-picker>
 						</li>
-                        <li class="fa-solid fa-envelope"></li>
+                        <li class="fa-solid fa-envelope" @click="onSendToMail"></li>
 						<li class="fa-solid fa-copy" @click="onCopyNote"></li>
                         <li class="fa-solid fa-pen-to-square" @click="onEditNote"></li>
                         <li class="fa-solid fa-trash-can" @click="onRemoveNote"></li>
@@ -28,6 +28,9 @@ export default {
 	},
 	components: { noteTxt, noteTodos, noteImg, noteVideo, colorPicker },
 	methods: {
+		onSendToMail() {
+			this.$emit('sendToMail', this.note.id)
+		},
 		openColorModal() {
 			this.isChooseClr = true
 		},

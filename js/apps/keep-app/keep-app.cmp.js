@@ -12,7 +12,7 @@ export default {
 				<add-note-bar @saveNote="saveNote" :noteToEdit="noteToEdit" @closeEditBox="closeEditBox"></add-note-bar>
 				<ul class="notes-list-container clean-list">
 					<li v-for="(note, idx) in notesForDisplay" :key="note.id">
-						<note-preview :note="note" @colorNote="changeNoteClr" @copyNote="copyNote" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
+						<note-preview :note="note" @colorNote="changeNoteClr" @sendToMail="sendToMail" @copyNote="copyNote" @removeNote="removeNote" @pinNote="pinNote" @updateInfo="updateInfo" @editNote="editNote"></note-preview>
 					</li>
 				</ul>
 			</section>
@@ -27,6 +27,19 @@ export default {
 	},
 	components: { notePreview, addNoteBar, searchBar },
 	methods: {
+		sendToMail(id) {
+			const note = this.notes.find(note => note.id === id)
+			let txt = ''
+			if (note.info.txt) txt = note.info.txt
+			else if (note.info.src) txt = note.info.src
+			else {
+				const tasks = note.info.todos.map(todo => todo.task)
+				txt = tasks.join('~')
+			}
+			this.$router.push(
+				`/mail/compose?title=${note.info.title || ''}&txt=${txt}`
+			)
+		},
 		setFilter(filterBy) {
 			this.filterBy = filterBy
 		},
@@ -145,5 +158,22 @@ export default {
 			if (unpinnedNotes.length) allNotes.push(...unpinnedNotes)
 			this.notes = allNotes
 		})
+	},
+	watch: {
+		'$route.query': {
+			handler(query) {
+				const note = {
+					isPinned: false,
+					bgClr: 'white',
+					type: 'noteTxt',
+					info: { title: '', txt: '' },
+				}
+				if (!query) return
+				if (query.title) note.info.title = query.title
+				if (query.txt) note.info.txt = query.txt
+				this.saveNote(note)
+			},
+			immediate: true,
+		},
 	},
 }
