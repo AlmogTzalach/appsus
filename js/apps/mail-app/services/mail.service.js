@@ -12,6 +12,8 @@ export const mailService = {
 	save,
 	get,
 	update,
+	createMailToSend,
+	getUser,
 }
 
 function query(status, txt = '') {
@@ -20,6 +22,14 @@ function query(status, txt = '') {
 			return mails
 		} else if (status === 'inbox') {
 			mails = mails.filter((mail) => mail.to === USER)
+		} else if (status === 'starred') {
+			mails = mails.filter((mail) => mail.isStarred)
+		} else if (status === 'sent') {
+			mails = mails.filter((mail) => mail.from === USER)
+		} else if (status === 'drafts') {
+			mails = mails.filter((mail) => mail.isDraft)
+		} else if (status === 'trash') {
+			mails = mails.filter((mail) => mail.isTrashed)
 		}
 
 		mails = mails.filter((mail) => {
@@ -47,15 +57,39 @@ function update(mail) {
 	return storageService.put(MAIL_KEY, mail)
 }
 
+function getUser() {
+	return USER
+}
+
 function save(mail) {
-	if (mail.id) return storageService.put(MAIL_KEY, mail)
-	else return storageService.post(MAIL_KEY, mail)
+	return storageService.post(MAIL_KEY, mail)
+}
+
+function createMailToSend(subject, body, to) {
+	const mail = _createMail(subject, body, USER, to)
+	mail.isRead = true
+	save(mail)
+	return mail
+}
+
+function _createMail(subject, body, from, to) {
+	return {
+		id: utilService.makeId(),
+		subject,
+		body,
+		from,
+		to,
+		created: new Date(),
+		isRead: false,
+		isStarred: false,
+	}
 }
 
 function _createMails() {
 	let mails = utilService.loadFromStorage(MAIL_KEY)
 	if (!mails || !mails.length) {
 		mails = []
+		// demo data
 		mails.push(
 			_createMail(
 				'Hi!',
@@ -64,7 +98,14 @@ function _createMails() {
 				'anton@gmail.com'
 			)
 		)
-		mails.push(_createMail('Hi!!!!', 'Hello lorem ipsum', 'anton@gmail.com', USER))
+		mails.push(
+			_createMail(
+				'Nigerian Prince Says Hi',
+				'I am Barr. Phillip Butulezi, an attorney of law to a deceased Immigrant property Magnate, who was based in the U.K, also referred to as my client.On the 25th of July 2000, my client, his wife, and their two Children died in the Air France concord plane crash bound for New York. They were on their way to a world cruise.Prior to that accident and since then, I have been managing Mr Schoelers properties here in the U.K. Some of these properties, at the time of the accident, were already put on sale. I, as his attorney, monitored the sale of the properties, and the depositing of the proceeds into Mr Schoelers main U.K bank account. I have contacted you initially to assist me in repatriating the money, and possibly ownership of some of the property left behind by my client; this is to prevent ownership of both reverting to the state. By U.K law, ownership of funds in current bank accounts unattended for six years will automatically revert back to her majestys government treasury. However, the legal procedure to activate this takes about three months, of which there are just about two months left.',
+				'anton@gmail.com',
+				USER
+			)
+		)
 		mails.push(
 			_createMail(
 				'Muki invited you to GitHub',
@@ -329,17 +370,4 @@ function _createMails() {
 		storageService.postMany(MAIL_KEY, mails)
 	}
 	return mails
-}
-
-function _createMail(subject, body, from, to) {
-	return {
-		id: utilService.makeId(),
-		subject,
-		body,
-		from,
-		to,
-		created: new Date(),
-		isRead: false,
-		isStarred: false,
-	}
 }

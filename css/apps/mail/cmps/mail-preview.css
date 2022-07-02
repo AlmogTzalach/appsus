@@ -16,10 +16,12 @@
 	color: #5f6368;
 }
 
-.mail-preview .mail-txt {
+.mail-preview .mail-txt,
+.mail-preview .address {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	margin-inline-end: 0.1em;
 }
 
 .mail-preview .date {

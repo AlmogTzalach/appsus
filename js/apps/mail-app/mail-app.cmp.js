@@ -5,14 +5,14 @@ import mailSideNav from './cmps/mail-side-nav.cmp.js'
 export default {
 	template: `
         <section class="mail-container grid">
-            <mail-side-nav />
-            <!-- <mail-list :mails="mails" /> -->
+            <mail-side-nav :unreadCount="unreadMailsCount" />
 			<router-view 
-				:mails="mails" 
+				:mails="mails"	
 				@starred="toggleStar"
 				@marked="toggleMark"
 				@deleted="deleteMail"
 				@opened="toggleMark"
+				@mailSent="onMailSent"
 			/>
         </section>
     `,
@@ -42,12 +42,30 @@ export default {
 				mailService.update(mail)
 			})
 		},
-		deleteMail(id) {},
+		deleteMail(id) {
+			const idx = this.mails.findIndex((mail) => mail.id === id)
+			this.mails.splice(idx, 1)
+
+			mailService.remove(id)
+		},
+		onMailSent(mail) {
+			this.mails.unshift(mail)
+		},
 		getMail(id) {
 			return this.mails.find((mail) => mail.id === id)
 		},
 	},
-	computed: {},
+
+	computed: {
+		unreadMailsCount() {
+			if (!this.mails) return 0
+			const user = mailService.getUser()
+			return this.mails.reduce((acc, curr) => {
+				if (curr.to === user && !curr.isRead) acc++
+				return acc
+			}, 0)
+		},
+	},
 
 	created() {
 		mailService.query('all').then((mails) => (this.mails = mails))
