@@ -78,12 +78,19 @@ export default {
 	computed: {
 		notesForDisplay() {
 			let notes = this.notes
-			if (this.filterBy?.searchWord) {
-				const regex = new RegExp(this.filterBy.searchWord, 'i')
-				notes = notes.filter(note => regex.test(note.info.title))
-			}
 			if (this.filterBy?.noteType) {
 				notes = notes.filter(note => note.type === this.filterBy.noteType)
+			}
+
+			if (this.filterBy?.searchWord) {
+				const regex = new RegExp(this.filterBy.searchWord, 'i')
+				notes = notes.filter(note => {
+					if (regex.test(note.info.title)) return true
+					if (note.info.txt && regex.test(note.info.txt)) return true
+					if (note.info.todos) {
+						return note.info.todos.some(todo => regex.test(todo.task))
+					}
+				})
 			}
 			return notes
 		},

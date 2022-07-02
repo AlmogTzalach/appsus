@@ -4,7 +4,7 @@ export default {
 	template: `
         <section class="add-note-container flex column align-center">
             <div v-if="!isEditOrAdd" class="add-note-bar flex space-between">
-                <span>Take a note...</span>
+                <span @click="changeNoteType('noteTxt')">Take a note...</span>
                 <div class="note-type-select">
                         <ul class="note-types clean-list flex space-around">
                             <li class="fa-solid fa-comment" @click="changeNoteType('noteTxt')"></li>
