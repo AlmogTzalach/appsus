@@ -1,0 +1,23 @@
+.home-page{
+    text-align: center;
+}
+
+.home-page h2 {
+    margin-bottom: 2em;
+}
+
+.home-page-img-container .img-container img{
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+.home-page-img-container .img-container {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.home-page-img-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
